@@ -44,7 +44,7 @@ The translation from the anchor is explicit:
 |---|---|
 | A non-query operation in Childs's query model | A known operation independent of the unknown reflection entries; it can depend on recorded outcomes from earlier queries. |
 | An input string of length $`n`$ in Chapter 21 | The $`m`$ unknown bits used to construct the hard reflection family. |
-| Childs's bit-flip oracle $`\widehat O_x`$ in §21.2 | This project's $`O_x|i,z\rangle=|i,z\oplus x_i\rangle`$. The notation $`O_x`$ here always denotes this bit-flip interface. |
+| Childs's bit-flip oracle $`\widehat O_x`$ in §21.2 | This project's $`O_x\lvert i,z\rangle=\lvert i,z\oplus x_i\rangle`$. The notation $`O_x`$ here always denotes this bit-flip interface. |
 | Childs's phase-oracle notation $`O_x`$ | A different notation from ours; no free controlled phase oracle is imported into the reduction. |
 | Query count | A bound on total serial oracle invocations on every branch, including branches selected by measurements or randomness. |
 | Simulation time $`t`$ | The requested physical evolution time multiplied by the total jump rate; it is separate from the simulator's query count. |
