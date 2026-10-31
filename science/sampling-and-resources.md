@@ -68,8 +68,10 @@ q_a=\frac1K\sum_{j=0}^{K-1}\phi_j e^{-2\pi i ja/K},
 By finite Fourier orthogonality,
 
 ```math
-q_a=\Pr\{S_t\equiv a\pmod K\}
-=\sum_{\ell\in\mathbb Z}\Pr\{S_t=a+\ell K\}.
+\begin{aligned}
+q_a&=\Pr\{S_t\equiv a\pmod K\}\\
+&=\sum_{\ell\in\mathbb Z}\Pr\{S_t=a+\ell K\}.
+\end{aligned}
 \tag{5}
 ```
 
@@ -164,9 +166,10 @@ Each resulting integer coordinate is rounded down once. In physical fixed-point 
 Let $`E_j`$ be the largest complex error after FFT stage $`j`$, before the final normalization by $`K`$. Exact stage-$`j`$ values have magnitude at most $`2^j`$ because the initial values satisfy $`|\phi_j|\le1`$. A butterfly therefore obeys the conservative recurrence
 
 ```math
-E_0\le\eta,
-\qquad
-E_{j+1}\le(2+\eta)E_j+\eta\,2^j+\eta.
+\begin{aligned}
+E_0&\le\eta,\\
+\qquad E_{j+1}&\le(2+\eta)E_j+\eta\,2^j+\eta.
+\end{aligned}
 \tag{8}
 ```
 
@@ -179,17 +182,20 @@ F_{j+1}\le(1+\eta/2)F_j+\eta/2+\eta/2^{j+1},
 so
 
 ```math
-F_L\le e^{\eta L/2}\eta(2+L/2)
-\le2\eta(L+2).
+\begin{aligned}
+F_L&\le e^{\eta L/2}\eta(2+L/2)\\
+&\le2\eta(L+2).
+\end{aligned}
 \tag{9}
 ```
 
 The last bound uses $`\eta L\le1`$, which follows amply from (7). Taking the real part cannot increase the error. Thus the real Fourier output divided by $`KD`$, denoted $`\widehat q`$, satisfies
 
 ```math
-\|\widehat q-q\|_1\le\delta,
-\qquad
-\delta=2K\eta(L+2)=\epsilon/64.
+\begin{aligned}
+\|\widehat q-q\|_1&\le\delta,\\
+\qquad\delta&=2K\eta(L+2)=\epsilon/64.
+\end{aligned}
 \tag{10}
 ```
 
@@ -206,10 +212,11 @@ Some approximate outputs can be slightly negative. Clip them at zero to obtain $
 The normalized probabilities $`v=a/Z`$ obey
 
 ```math
-\|v-q\|_1
-\le\|v-a\|_1+\|a-q\|_1
-=|1-Z|+\|a-q\|_1
-\le2\delta=\epsilon/32.
+\begin{aligned}
+\|v-q\|_1&\le\|v-a\|_1+\|a-q\|_1\\
+&=|1-Z|+\|a-q\|_1\\
+&\le2\delta=\epsilon/32.
+\end{aligned}
 \tag{11}
 ```
 

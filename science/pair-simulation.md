@@ -56,8 +56,10 @@ B W_s=W_{T_B(s)},
 ```
 
 ```math
-T_A(s)=s+(-1)^s,\qquad
-T_B(s)=s-(-1)^s.
+\begin{aligned}
+T_A(s)&=s+(-1)^s,\\
+T_B(s)&=s-(-1)^s.
+\end{aligned}
 \tag{2}
 ```
 
@@ -142,9 +144,11 @@ The last inequality follows term by term from $`n!\ge2\cdot3^{n-2}`$ for $`n\ge2
 In particular, for every $`u\gt 0`$,
 
 ```math
+\begin{aligned}
 x\ge\sqrt{2tu}+u
 \quad\Longrightarrow\quad
 \Pr\{|S_t|\ge x\}\le2e^{-u}.
+\end{aligned}
 \tag{9}
 ```
 
