@@ -42,6 +42,12 @@ Start with [Model and results](science/model-and-results.md) for the exact oracl
 
 The one-reflection endpoint, Poisson trajectories and parity lower-bound method are established ingredients. The contribution studied here is the universal pair algorithm together with a linear obstruction using only three autonomous reflection types. The related-work account compares exact access models, output requirements, dimensions and source versions.
 
+## Learn the project
+
+The single educational anchor is Andrew M. Childs's [*Lecture Notes on Quantum Algorithms*](https://www.cs.umd.edu/~amchilds/qa/qa.pdf), dated **17 April 2025**. The [Childs bridge](learning/CHILDS_BRIDGE.md) connects its oracle and lower-bound framework to full-channel simulation, reflection-word reduction, certified endpoint sampling and the finite-tree construction.
+
+The [30-milestone map](learning/MILESTONES.md) develops the project's understanding targets through background/preliminaries and narrative/innovation. It is a common scientific route, with explicit dependencies and source pointers. The [learning entrypoint](learning/README.md) explains how to use the bridge and map alongside the authoritative proof pages.
+
 ## Reproduce the finite checks
 
 From the repository root, install the pinned numerical dependencies and run:
