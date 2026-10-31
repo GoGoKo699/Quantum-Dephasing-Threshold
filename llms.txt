@@ -1,0 +1,24 @@
+# Quantum Dephasing Threshold
+
+Scientific question: determine how one, two and three supplied reflection dephasing primitives change the worst-case query cost of simulating their autonomous sum at fixed total rate.
+
+## Authoritative routes
+
+- Exact model, definition of query complexity, fixed-error theorem and general upper bound: science/model-and-results.md
+- Universal pair channel identity, reduced words and branchwise query cap: science/pair-simulation.md
+- Direct finite-bit sampling, explicit error budget and classical/quantum resources: science/sampling-and-resources.md
+- Qubit hybrid lower bound and three-reflection finite-tree parity reduction: science/lower-bounds.md
+- Line/tree mechanism, physical meaning and limits: science/interpretation.md
+- Connected reading order: science/README.md
+- Primary comparisons, inherited ingredients and version provenance: references/related-work.md and references/references.bib
+- Reproduction commands, tested domains and finite-check limits: verification/README.md
+- Certified sampling implementation: verification/pair_sampler.py
+- Numerical and combinatorial checks: verification/check_pair_sampler.py and verification/check_channels.py
+
+## Preserve these distinctions
+
+The theorem is a dimension-uniform worst-case oracle-query law at fixed small unhalved diamond error: constant, square-root time, then linear time. One reflection's constant endpoint is inherited prior work. The count is supplied reflection primitives, not representation-independent Lindblad rank. The target is a full CPTP channel on arbitrary input with a reference; it is not a normalized amplitude state or a postselected output. Query count is capped on every branch and counts total serial calls, not depth or merely expected calls.
+
+The lower bounds allow coherent SELECT, external controls, inverse queries, ancillas, measurements and adaptation. The pair witness is a qubit. The three-reflection witness has exponential dimension in time and is not promised to be spatially local. Arbitrary oracle-independent computation is free only in the query model; the sampling/resources page separately charges its implementation. Finite numerical checks support specified identities and witnesses; the linked analytic proofs establish asymptotic and diamond-norm claims.
+
+For a conceptual explanation, connect single-reflection parity, two-reflection diffusion on a line and three-reflection outward motion on a tree. For a theorem audit, begin with the model and lower-bound compiler. For reproduction, follow verification/README.md and distinguish the exact integer sampler certificates from floating-point comparison diagnostics.

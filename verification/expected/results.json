@@ -1,0 +1,356 @@
+{
+  "scope": "Finite scientific diagnostics; see analytic proofs for asymptotic and diamond-norm claims.",
+  "status": "pass",
+  "checks": {
+    "check_pair_sampler.py": {
+      "status": "pass",
+      "scope": "finite floating diagnostics plus exact certificate checks; not a proof",
+      "word_identity": {
+        "words_checked": 511,
+        "maximum_matrix_difference": 6.16505006196164e-15
+      },
+      "distributions": [
+        {
+          "time": "0",
+          "epsilon": "1/100",
+          "modulus": 1,
+          "query_cap": 0,
+          "precision_bits": 0,
+          "precision_attempts": 0,
+          "random_bits": 0,
+          "l1_to_wrapped_bessel": 0.0,
+          "two_sided_alias_tail": 0.0,
+          "certified_diamond_error": 0.0
+        },
+        {
+          "time": "1/100000",
+          "epsilon": "1/5",
+          "modulus": 16,
+          "query_cap": 8,
+          "precision_bits": 43,
+          "precision_attempts": 1,
+          "random_bits": 12,
+          "l1_to_wrapped_bessel": 1.999985000080904e-05,
+          "two_sided_alias_tail": 1.9376057082462253e-47,
+          "certified_diamond_error": 0.07265625
+        },
+        {
+          "time": "1/100",
+          "epsilon": "1/10",
+          "modulus": 16,
+          "query_cap": 8,
+          "precision_bits": 44,
+          "precision_attempts": 1,
+          "random_bits": 13,
+          "l1_to_wrapped_bessel": 0.00018458260634858517,
+          "two_sided_alias_tail": 1.9194159382964645e-23,
+          "certified_diamond_error": 0.036328125
+        },
+        {
+          "time": "1",
+          "epsilon": "1/100",
+          "modulus": 32,
+          "query_cap": 16,
+          "precision_bits": 49,
+          "precision_attempts": 1,
+          "random_bits": 17,
+          "l1_to_wrapped_bessel": 4.798775820189608e-05,
+          "two_sided_alias_tail": 5.609864405420789e-19,
+          "certified_diamond_error": 0.004462890625
+        },
+        {
+          "time": "20",
+          "epsilon": "1/1000",
+          "modulus": 128,
+          "query_cap": 64,
+          "precision_bits": 59,
+          "precision_attempts": 1,
+          "random_bits": 22,
+          "l1_to_wrapped_bessel": 5.690108740451076e-06,
+          "two_sided_alias_tail": 1.7494784633837522e-33,
+          "certified_diamond_error": 0.000550048828125
+        },
+        {
+          "time": "1000",
+          "epsilon": "1/100",
+          "modulus": 512,
+          "query_cap": 256,
+          "precision_bits": 63,
+          "precision_attempts": 1,
+          "random_bits": 21,
+          "l1_to_wrapped_bessel": 7.359054320945044e-05,
+          "two_sided_alias_tail": 7.670861435660922e-16,
+          "certified_diamond_error": 0.004462890625
+        },
+        {
+          "time": "10000",
+          "epsilon": "1/20",
+          "modulus": 1024,
+          "query_cap": 512,
+          "precision_bits": 65,
+          "precision_attempts": 1,
+          "random_bits": 20,
+          "l1_to_wrapped_bessel": 0.00042706937041131184,
+          "two_sided_alias_tail": 3.145265200673646e-07,
+          "certified_diamond_error": 0.0181640625
+        },
+        {
+          "time": "1/3",
+          "epsilon": "1/100000000",
+          "modulus": 128,
+          "query_cap": 64,
+          "precision_bits": 73,
+          "precision_attempts": 1,
+          "random_bits": 39,
+          "l1_to_wrapped_bessel": 1.404434752735369e-11,
+          "two_sided_alias_tail": 1.7884170302599886e-139,
+          "certified_diamond_error": 4.270620942115784e-09
+        }
+      ],
+      "channels": [
+        {
+          "case": "identical-qubit",
+          "dimension": 2,
+          "time": "0.1",
+          "query_cap": 16,
+          "choi_trace_norm_diamond_upper_estimate": 2.0183297161358027e-05,
+          "trace_preservation_error": 0.0
+        },
+        {
+          "case": "anticommuting-qubit",
+          "dimension": 2,
+          "time": "3",
+          "query_cap": 32,
+          "choi_trace_norm_diamond_upper_estimate": 1.8968543436304056e-05,
+          "trace_preservation_error": 0.0
+        },
+        {
+          "case": "tilted-qubit",
+          "dimension": 2,
+          "time": "1",
+          "query_cap": 32,
+          "choi_trace_norm_diamond_upper_estimate": 5.504664284302814e-06,
+          "trace_preservation_error": 0.0
+        },
+        {
+          "case": "tilted-qubit-long",
+          "dimension": 2,
+          "time": "30",
+          "query_cap": 64,
+          "choi_trace_norm_diamond_upper_estimate": 2.861022949205306e-06,
+          "trace_preservation_error": 0.0
+        },
+        {
+          "case": "complex-four-dimensional",
+          "dimension": 4,
+          "time": "4",
+          "query_cap": 32,
+          "choi_trace_norm_diamond_upper_estimate": 1.0564548349477827e-05,
+          "trace_preservation_error": 8.172098809123321e-16
+        }
+      ]
+    },
+    "check_channels.py": {
+      "scope": "Finite identity and witness checks; asymptotic and diamond-norm conclusions require the analytic arguments.",
+      "seed": 261031,
+      "pair_superoperator_checks": [
+        {
+          "dimension": 2,
+          "time": 0.1,
+          "superoperator_error": 3.3335293856036375e-16,
+          "retained_mass": 0.9999999999999997,
+          "cutoff": 64
+        },
+        {
+          "dimension": 2,
+          "time": 1.0,
+          "superoperator_error": 4.770885988302975e-16,
+          "retained_mass": 0.9999999999999999,
+          "cutoff": 72
+        },
+        {
+          "dimension": 2,
+          "time": 10.0,
+          "superoperator_error": 1.0962268155818307e-15,
+          "retained_mass": 1.0,
+          "cutoff": 98
+        },
+        {
+          "dimension": 2,
+          "time": 100.0,
+          "superoperator_error": 3.881039955534371e-15,
+          "retained_mass": 1.0000000000000029,
+          "cutoff": 180
+        },
+        {
+          "dimension": 4,
+          "time": 0.1,
+          "superoperator_error": 4.521631837523136e-16,
+          "retained_mass": 0.9999999999999997,
+          "cutoff": 64
+        },
+        {
+          "dimension": 4,
+          "time": 1.0,
+          "superoperator_error": 5.166324008006706e-16,
+          "retained_mass": 0.9999999999999999,
+          "cutoff": 72
+        },
+        {
+          "dimension": 4,
+          "time": 10.0,
+          "superoperator_error": 2.997609032073778e-15,
+          "retained_mass": 1.0,
+          "cutoff": 98
+        },
+        {
+          "dimension": 4,
+          "time": 100.0,
+          "superoperator_error": 4.088890996979612e-14,
+          "retained_mass": 1.0000000000000029,
+          "cutoff": 180
+        },
+        {
+          "dimension": 8,
+          "time": 0.1,
+          "superoperator_error": 4.483429551942415e-16,
+          "retained_mass": 0.9999999999999997,
+          "cutoff": 64
+        },
+        {
+          "dimension": 8,
+          "time": 1.0,
+          "superoperator_error": 6.778931838608663e-16,
+          "retained_mass": 0.9999999999999999,
+          "cutoff": 72
+        },
+        {
+          "dimension": 8,
+          "time": 10.0,
+          "superoperator_error": 6.854788977490283e-15,
+          "retained_mass": 1.0,
+          "cutoff": 98
+        },
+        {
+          "dimension": 8,
+          "time": 100.0,
+          "superoperator_error": 4.573113357445222e-14,
+          "retained_mass": 1.0000000000000029,
+          "cutoff": 180
+        }
+      ],
+      "qubit_lower_bound_checks": [
+        {
+          "time": 1.0,
+          "theta": 1.0,
+          "z_signal": 0.5355911809078971,
+          "zero_measurement_probability_gap": 0.23220440954605143,
+          "oracle_operator_distance": 0.958851077208406,
+          "formula_error": 1.1102230246251565e-16
+        },
+        {
+          "time": 1.5,
+          "theta": 0.8164965809277261,
+          "z_signal": 0.537596889824896,
+          "zero_measurement_probability_gap": 0.23120155508755202,
+          "oracle_operator_distance": 0.794004375902866,
+          "formula_error": 4.440892098500626e-16
+        },
+        {
+          "time": 4.0,
+          "theta": 0.5,
+          "z_signal": 0.5753517890977818,
+          "zero_measurement_probability_gap": 0.21232410545110908,
+          "oracle_operator_distance": 0.4948079185090459,
+          "formula_error": 1.1102230246251565e-16
+        },
+        {
+          "time": 16.0,
+          "theta": 0.25,
+          "z_signal": 0.5986566125658072,
+          "zero_measurement_probability_gap": 0.20067169371709642,
+          "oracle_operator_distance": 0.2493494667704554,
+          "formula_error": 0.0
+        },
+        {
+          "time": 64.0,
+          "theta": 0.125,
+          "z_signal": 0.6045577420711463,
+          "zero_measurement_probability_gap": 0.19772112896442684,
+          "oracle_operator_distance": 0.12491863568476042,
+          "formula_error": 8.881784197001252e-16
+        },
+        {
+          "time": 256.0,
+          "theta": 0.0625,
+          "z_signal": 0.6060371553935491,
+          "zero_measurement_probability_gap": 0.19698142230322546,
+          "oracle_operator_distance": 0.06248982797065218,
+          "formula_error": 4.3298697960381105e-15
+        },
+        {
+          "time": 1024.0,
+          "theta": 0.03125,
+          "z_signal": 0.6064072664582681,
+          "zero_measurement_probability_gap": 0.19679636677086593,
+          "oracle_operator_distance": 0.03124872844976675,
+          "formula_error": 2.55351295663786e-15
+        }
+      ],
+      "three_tree_radial_checks": [
+        {
+          "parity_bits": 1,
+          "time": 48.0,
+          "tree_radius": 192,
+          "prob_depth_ge_bits": 0.9992976673196299,
+          "rigorous_chebyshev_minus_poisson_bound": 0.7866666666666666,
+          "normalization_error": 8.881784197001252e-16
+        },
+        {
+          "parity_bits": 1,
+          "time": 60.0,
+          "tree_radius": 240,
+          "prob_depth_ge_bits": 0.9997325152492494,
+          "rigorous_chebyshev_minus_poisson_bound": 0.8293333333333334,
+          "normalization_error": 1.3322676295501878e-15
+        },
+        {
+          "parity_bits": 2,
+          "time": 100.0,
+          "tree_radius": 400,
+          "prob_depth_ge_bits": 0.9999470459877458,
+          "rigorous_chebyshev_minus_poisson_bound": 0.8976,
+          "normalization_error": 1.865174681370263e-14
+        },
+        {
+          "parity_bits": 4,
+          "time": 192.0,
+          "tree_radius": 768,
+          "prob_depth_ge_bits": 0.9999995012763776,
+          "rigorous_chebyshev_minus_poisson_bound": 0.9466666666666667,
+          "normalization_error": 1.9539925233402755e-14
+        },
+        {
+          "parity_bits": 16,
+          "time": 768.0,
+          "tree_radius": 3072,
+          "prob_depth_ge_bits": 1.0000000000000562,
+          "rigorous_chebyshev_minus_poisson_bound": 0.9866666666666667,
+          "normalization_error": 5.639932965095795e-14
+        },
+        {
+          "parity_bits": 32,
+          "time": 1536.0,
+          "tree_radius": 6144,
+          "prob_depth_ge_bits": 0.9999999999999237,
+          "rigorous_chebyshev_minus_poisson_bound": 0.9933333333333333,
+          "normalization_error": 7.638334409421077e-14
+        }
+      ],
+      "tree_edge_parity_and_involution_checks": 9120,
+      "tree_vertices_for_structural_checks": 190,
+      "max_pair_error": 4.573113357445222e-14,
+      "all_checks_passed": true
+    }
+  }
+}
