@@ -5,8 +5,8 @@
 This project considers supplied Hermitian unitary oracles $`R_1,\ldots,R_m`$, with $`R_j^2=I`$, and the autonomous generator
 
 ```math
-\mathcal L_m=\frac1m\sum_{j=1}^{m}(\operatorname{Ad}_{R_j}-\mathrm{Id}),
-\qquad \operatorname{Ad}_{R_j}(\rho)=R_j\rho R_j.
+\mathcal L_m=\frac1m\sum_{j=1}^{m}(\mathrm{Ad}_{R_j}-\mathrm{Id}),
+\qquad \mathrm{Ad}_{R_j}(\rho)=R_j\rho R_j.
 ```
 
 The total jump rate is one. The task is to implement $`e^{t\mathcal L_m}`$ as a completely positive, trace-preserving channel, with a diamond-norm guarantee on arbitrary inputs and reference systems. The resource is calls to the supplied oracles. Oracle-independent computation is free in the query model, and the lower bounds allow coherent control and selection of the oracles.

@@ -12,15 +12,15 @@ Let $`A`$ and $`B`$ be Hermitian involutions on an arbitrary finite-dimensional 
 A=A^\dagger,\qquad B=B^\dagger,\qquad A^2=B^2=I.
 ```
 
-Write $`\operatorname{Ad}_U(\rho)=U\rho U^\dagger`$. The normalized generator is
+Write $`\mathrm{Ad}_U(\rho)=U\rho U^\dagger`$. The normalized generator is
 
 ```math
 \mathcal L_2
-=\frac12\bigl(\operatorname{Ad}_A+\operatorname{Ad}_B\bigr)
--\operatorname{id}.
+=\frac12\bigl(\mathrm{Ad}_A+\mathrm{Ad}_B\bigr)
+-\mathrm{id}.
 ```
 
-The total jump rate is one. Put $`\mathcal P=(\operatorname{Ad}_A+\operatorname{Ad}_B)/2`$. Since the identity superoperator commutes with every superoperator,
+The total jump rate is one. Put $`\mathcal P=(\mathrm{Ad}_A+\mathrm{Ad}_B)/2`$. Since the identity superoperator commutes with every superoperator,
 
 ```math
 e^{t\mathcal L_2}
@@ -28,7 +28,7 @@ e^{t\mathcal L_2}
 \tag{1}
 ```
 
-Thus an exact trajectory description first draws $`N\sim\operatorname{Poisson}(t)`$ and then applies $`N`$ independent fair choices of $`A`$ and $`B`$. Equation (1) follows directly from the exponential series; it is an identity of channels, including on inputs entangled with an untouched reference. The constant-rate trajectory viewpoint also appears in the general simulation framework of [Borras and Marvian, Section 4](https://arxiv.org/html/2509.10425v2).
+Thus an exact trajectory description first draws $`N\sim\mathrm{Poisson}(t)`$ and then applies $`N`$ independent fair choices of $`A`$ and $`B`$. Equation (1) follows directly from the exponential series; it is an identity of channels, including on inputs entangled with an untouched reference. The constant-rate trajectory viewpoint also appears in the general simulation framework of [Borras and Marvian, Section 4](https://arxiv.org/html/2509.10425v2).
 
 Directly generating and applying all these letters has expected cost $`t`$. The following reduction acts on their product before it is applied to the system.
 
@@ -36,7 +36,7 @@ Directly generating and applying all these letters has expected cost $`t`$. The 
 
 Represent a word in **chronological order**, so the first listed letter is the first gate applied. Delete every adjacent pair $`AA`$ or $`BB`$. The operator product is unchanged because $`A^2=B^2=I`$. A stack implements this reduction: a new letter cancels the top letter if they agree, and otherwise is pushed onto the stack. Every surviving nonempty word alternates.
 
-Index alternating words by signed integers. Let $`W_0=I`$. For $`s>0`$, apply $`s`$ alternating gates beginning with $`A`$. For $`s<0`$, apply $`|s|`$ alternating gates beginning with $`B`$. For example,
+Index alternating words by signed integers. Let $`W_0=I`$. For $`s\gt 0`$, apply $`s`$ alternating gates beginning with $`A`$. For $`s\lt 0`$, apply $`|s|`$ alternating gates beginning with $`B`$. For example,
 
 | Coordinate | Chronological gates | Resulting operator |
 |---|---|---|
@@ -72,7 +72,7 @@ Let $`S_t`$ be the coordinate after the Poisson number of steps in (1). Splittin
 ```math
 S_t=N_+-N_-,\qquad
 N_+,N_-\ \text{independent},\qquad
-N_+,N_-\sim\operatorname{Poisson}(t/2).
+N_+,N_-\sim\mathrm{Poisson}(t/2).
 \tag{3}
 ```
 
@@ -100,7 +100,7 @@ where the last equality defines the relevant modified Bessel function. Equivalen
 
 ```math
 e^{t\mathcal L_2}
-=\sum_{s\in\mathbb Z}p_s(t)\operatorname{Ad}_{W_s}.
+=\sum_{s\in\mathbb Z}p_s(t)\mathrm{Ad}_{W_s}.
 \tag{6}
 ```
 
@@ -121,7 +121,7 @@ The final inequality is Cauchy–Schwarz. It is an expected-cost statement. A wo
 
 Throughout this project, an error $`\epsilon`$ means **full diamond norm**, without the factor of one half sometimes used in channel-distance conventions.
 
-For $`x>0`$ and $`t>0`$, the endpoint obeys the two-sided Bernstein bound
+For $`x\gt 0`$ and $`t\gt 0`$, the endpoint obeys the two-sided Bernstein bound
 
 ```math
 \Pr\{|S_t|\ge x\}
@@ -129,7 +129,7 @@ For $`x>0`$ and $`t>0`$, the endpoint obeys the two-sided Bernstein bound
 \tag{8}
 ```
 
-Here is a direct proof that also fixes the constants. For $`0\le\lambda<3`$,
+Here is a direct proof that also fixes the constants. For $`0\le\lambda\lt 3`$,
 
 ```math
 \cosh\lambda-1
@@ -139,7 +139,7 @@ Here is a direct proof that also fixes the constants. For $`0\le\lambda<3`$,
 
 The last inequality follows term by term from $`n!\ge2\cdot3^{n-2}`$ for $`n\ge2`$. Apply the exponential Markov inequality to (5) and set $`\lambda=x/(t+x/3)`$. This gives the upper-tail exponent in (8). Symmetry gives the lower tail and the factor two.
 
-In particular, for every $`u>0`$,
+In particular, for every $`u\gt 0`$,
 
 ```math
 x\ge\sqrt{2tu}+u
@@ -155,16 +155,16 @@ For a simple capped construction, choose
 ```math
 u=\ln(4/\epsilon),\qquad
 M=\left\lceil\sqrt{2tu}+u\right\rceil,
-\qquad 0<\epsilon\le1.
+\qquad 0\lt \epsilon\le1.
 ```
 
-Draw the exact endpoint. Apply $`W_{S_t}`$ if $`|S_t|<M`$; otherwise apply the identity. If $`\mathcal F_{t,M}`$ denotes this channel, then
+Draw the exact endpoint. Apply $`W_{S_t}`$ if $`|S_t|\lt M`$; otherwise apply the identity. If $`\mathcal F_{t,M}`$ denotes this channel, then
 
 ```math
 \begin{aligned}
 \bigl\|\mathcal F_{t,M}-e^{t\mathcal L_2}\bigr\|_\diamond
 &\le\sum_{|s|\ge M}p_s(t)
-\bigl\|\operatorname{id}-\operatorname{Ad}_{W_s}\bigr\|_\diamond\\
+\bigl\|\mathrm{id}-\mathrm{Ad}_{W_s}\bigr\|_\diamond\\
 &\le2\Pr\{|S_t|\ge M\}\\
 &\le\epsilon.
 \end{aligned}
@@ -209,7 +209,7 @@ The [finite-bit construction](sampling-and-resources.md) computes (11) by an int
 K=O\!\left(\sqrt{t\log(1/\epsilon)}+\log(1/\epsilon)\right)
 ```
 
-and classical preprocessing $`O(K\log K\,\operatorname{poly}(b))`$, where $`b`$ counts input length and required arithmetic precision. There is no loop over the Poisson jump count and no coherent probability-loading operation.
+and classical preprocessing $`O(K\log K\,\mathrm{poly}(b))`$, where $`b`$ counts input length and required arithmetic precision. There is no loop over the Poisson jump count and no coherent probability-loading operation.
 
 ## 6. Interpretation and limits
 

@@ -2,7 +2,7 @@
 
 This page proves the converse bounds for the model in [Model and results](model-and-results.md). The bounds apply to arbitrary quantum simulation algorithms, including algorithms that use coherent selection, clean auxiliary registers, classical randomness, intermediate measurements, and adaptive control. The three-reflection result is a reduction from quantum query complexity; it does not assume that the simulator follows or explicitly generates a random trajectory.
 
-Throughout, the simulation error is the **unhalved** diamond norm, the query count is a maximum on every branch, and the system dimension is allowed to depend on time. Fix a real time $`t\ge 1`$ and an error $`0<\epsilon\le 1/100`$.
+Throughout, the simulation error is the **unhalved** diamond norm, the query count is a maximum on every branch, and the system dimension is allowed to depend on time. Fix a real time $`t\ge 1`$ and an error $`0\lt \epsilon\le 1/100`$.
 
 ## 1. Statements and oracle conventions
 
@@ -11,9 +11,9 @@ For unknown Hermitian involutions $`R_1,\ldots,R_k`$, define
 ```math
 \mathcal L_k
 =\frac1k\sum_{j=1}^{k}
-  \bigl(\operatorname{Ad}_{R_j}-\operatorname{Id}\bigr),
+  \bigl(\mathrm{Ad}_{R_j}-\mathrm{Id}\bigr),
 \qquad
-\operatorname{Ad}_{R_j}(\rho)=R_j\rho R_j,
+\mathrm{Ad}_{R_j}(\rho)=R_j\rho R_j,
 \qquad
 \Phi_t=e^{t\mathcal L_k}.
 ```
@@ -58,7 +58,7 @@ The two-reflection lower bound uses a single-qubit target. The three-reflection 
 For unitary oracles $`U,V`$, including any controls and selection registers in their definitions, their conjugation channels obey
 
 ```math
-\|\operatorname{Ad}_U-\operatorname{Ad}_V\|_\diamond
+\|\mathrm{Ad}_U-\mathrm{Ad}_V\|_\diamond
 \le 2\|U-V\|_{\mathrm{op}}.
 ```
 
@@ -83,12 +83,12 @@ None of the lower bounds below needs an entangled input. The full diamond-norm r
 
 ## 3. A constant lower bound, including one reflection
 
-On a qubit, compare a tuple whose every reflection is $`X`$ with a tuple whose every reflection is $`Z`$. For any supplied tuple length $`k`$, the corresponding generators are respectively $`\operatorname{Ad}_X-\operatorname{Id}`$ and $`\operatorname{Ad}_Z-\operatorname{Id}`$.
+On a qubit, compare a tuple whose every reflection is $`X`$ with a tuple whose every reflection is $`Z`$. For any supplied tuple length $`k`$, the corresponding generators are respectively $`\mathrm{Ad}_X-\mathrm{Id}`$ and $`\mathrm{Ad}_Z-\mathrm{Id}`$.
 
 Use the input $`|+\rangle\langle+|`$. The first evolution leaves this state fixed. The second evolves its Bloch $`x`$ coordinate to $`e^{-2t}`$. Hence the two output states have trace-norm separation
 
 ```math
-1-e^{-2t}\ge 1-e^{-2}>0.86.
+1-e^{-2t}\ge 1-e^{-2}\gt 0.86.
 ```
 
 A zero-query procedure has the same output for both tuples. It cannot approximate both outputs within trace norm $`\epsilon`$, because $`2\epsilon\le 0.02`$. Thus
@@ -101,8 +101,8 @@ Q_k(t,\epsilon)\ge 1
 For one reflection, this bound is exact in the worst-case query model. Indeed,
 
 ```math
-e^{t(\operatorname{Ad}_R-\operatorname{Id})}
-=(1-p_t)\operatorname{Id}+p_t\operatorname{Ad}_R,
+e^{t(\mathrm{Ad}_R-\mathrm{Id})}
+=(1-p_t)\mathrm{Id}+p_t\mathrm{Ad}_R,
 \qquad
 p_t=\frac{1-e^{-2t}}2,
 ```
@@ -151,7 +151,7 @@ This choice belongs to $`(0,1]`$ for every real $`t\ge1`$. The function
 =\frac12\left(\frac{\sin(x/2)}{x/2}\right)^2
 ```
 
-decreases on $`0<x\le1`$. For completeness, the derivative of $`\sin y/y`$ has the sign of $`y\cos y-\sin y`$, which is negative because this numerator vanishes at zero and has derivative $`-y\sin y<0`$. It follows that
+decreases on $`0\lt x\le1`$. For completeness, the derivative of $`\sin y/y`$ has the sign of $`y\cos y-\sin y`$, which is negative because this numerator vanishes at zero and has derivative $`-y\sin y\lt 0`$. It follows that
 
 ```math
 t(1-\cos\theta)\ge1-\cos1,
@@ -162,7 +162,7 @@ z_\theta(t)\le e^{-(1-\cos1)}.
 Measuring the bounded observable $`Z`$ therefore witnesses trace-norm separation at least
 
 ```math
-\delta_*:=1-e^{-(1-\cos1)}>0.3685
+\delta_*:=1-e^{-(1-\cos1)}\gt 0.3685
 ```
 
 between the two ideal outputs.
@@ -211,7 +211,7 @@ Let $`V_R`$ consist of all words of length at most $`R`$ on the alphabet $`\{1,2
 For a color $`j`$, define a known permutation $`T_j`$ as follows:
 
 1. If the last letter of $`v`$ is $`j`$, delete that letter.
-2. Otherwise, if $`|v|<R`$, append $`j`$.
+2. Otherwise, if $`|v|\lt R`$, append $`j`$.
 3. Otherwise, leave $`v`$ unchanged.
 
 Each $`T_j`$ is an involution. Its nontrivial edges join consecutive depths. At the outer boundary, its otherwise missing edges are self-loops.
@@ -250,17 +250,17 @@ This invariant follows by induction on moves. Traversing an edge at depth $`\ell
 For this basis input, the exact semigroup is a classical mixture of such trajectories. Indeed, writing
 
 ```math
-\mathcal T=\frac13\sum_{j=1}^{3}\operatorname{Ad}_{R_j^{(x)}},
+\mathcal T=\frac13\sum_{j=1}^{3}\mathrm{Ad}_{R_j^{(x)}},
 ```
 
 one has
 
 ```math
-e^{t(\mathcal T-\operatorname{Id})}
+e^{t(\mathcal T-\mathrm{Id})}
 =e^{-t}\sum_{n=0}^{\infty}\frac{t^n}{n!}\mathcal T^n.
 ```
 
-Equivalently, draw $`N\sim\operatorname{Poisson}(t)`$ and then apply $`N`$ independent uniformly chosen colors. The vertex walk is independent of the bit string.
+Equivalently, draw $`N\sim\mathrm{Poisson}(t)`$ and then apply $`N`$ independent uniformly chosen colors. The vertex walk is independent of the bit string.
 
 ### 5.3 A uniform finite-time success estimate
 
@@ -271,9 +271,9 @@ Couple this process with independent increments that equal $`+1`$ with probabili
 ```math
 D_N\ge Y=P_+-P_-,
 \qquad
-P_+\sim\operatorname{Poisson}(2t/3),
+P_+\sim\mathrm{Poisson}(2t/3),
 \quad
-P_-\sim\operatorname{Poisson}(t/3),
+P_-\sim\mathrm{Poisson}(t/3),
 ```
 
 with $`P_+`$ and $`P_-`$ independent. In particular,
@@ -281,7 +281,7 @@ with $`P_+`$ and $`P_-`$ independent. In particular,
 ```math
 \mathbb EY=t/3,
 \qquad
-\operatorname{Var}(Y)=t.
+\mathrm{Var}(Y)=t.
 ```
 
 Since $`m\le t/48`$, the distance between the mean and the parity threshold obeys
@@ -293,8 +293,8 @@ t/3-m\ge5t/16.
 Chebyshev's inequality yields
 
 ```math
-\Pr(D_N<m)
-\le\Pr(Y<m)
+\Pr(D_N\lt m)
+\le\Pr(Y\lt m)
 \le\frac{t}{(t/3-m)^2}
 \le\frac{256}{25t}.
 ```
@@ -307,7 +307,7 @@ Couple the finite and infinite trees with the same colors. They agree unless the
 \le\exp[-t(4\log4-3)].
 ```
 
-Writing $`c_P=4\log4-3>0`$, the finite-tree endpoint consequently satisfies
+Writing $`c_P=4\log4-3\gt 0`$, the finite-tree endpoint consequently satisfies
 
 ```math
 \Pr(|v|\ge m)
@@ -325,11 +325,11 @@ Replacing the ideal channel by one with unhalved diamond error $`\epsilon`$ decr
 ```math
 p_{\mathrm{succ}}
 \ge1-\frac{128}{25t}-\frac12e^{-c_Pt}-\frac\epsilon2
->\frac78
+\gt \frac78
 \qquad (t\ge48,\ \epsilon\le1/100).
 ```
 
-For an elementary numerical-free check of the last strict bound, use $`256/(25t)\le16/75`$ and $`e^{-c_Pt}<1/100`$. The displayed success probability is then greater than or equal to $`53/60>7/8`$. The sharper displayed expression is already greater than $`0.8883`$ at the smallest allowed time and largest allowed error.
+For an elementary numerical-free check of the last strict bound, use $`256/(25t)\le16/75`$ and $`e^{-c_Pt}\lt 1/100`$. The displayed success probability is then greater than or equal to $`53/60\gt 7/8`$. The sharper displayed expression is already greater than $`0.8883`$ at the smallest allowed time and largest allowed error.
 
 ### 5.4 Compiling a controlled SELECT into two ordinary bit queries
 
@@ -360,7 +360,7 @@ All graph operations in this compiler are known independently of $`x`$. For exam
 
 ### 5.5 Applying the quantum parity bound
 
-The bounded-error quantum query complexity of parity on $`m`$ bits is at least $`m/2`$. The polynomial method of [Beals, Buhrman, Cleve, Mosca, and de Wolf](https://arxiv.org/abs/quant-ph/9802049) gives a short proof applicable here. With $`T`$ bit queries, the probability of output zero is a multilinear polynomial of degree at most $`2T`$ on Boolean inputs. If $`2T<m`$, its signed version has zero correlation with the full parity character. Success uniformly greater than one half on every bit string would make that correlation strictly positive, a contradiction.
+The bounded-error quantum query complexity of parity on $`m`$ bits is at least $`m/2`$. The polynomial method of [Beals, Buhrman, Cleve, Mosca, and de Wolf](https://arxiv.org/abs/quant-ph/9802049) gives a short proof applicable here. With $`T`$ bit queries, the probability of output zero is a multilinear polynomial of degree at most $`2T`$ on Boolean inputs. If $`2T\lt m`$, its signed version has zero correlation with the full parity character. Success uniformly greater than one half on every bit string would make that correlation strictly positive, a contradiction.
 
 This argument includes classical randomness, adaptive measurements, and auxiliary systems: keep their outcomes in registers, or average their acceptance probabilities, without increasing the degree bound. A uniform upper bound on the number of queries is essential; no statement about merely expected query cost is used here.
 
@@ -378,7 +378,7 @@ For $`t\ge48`$, the elementary bound $`\lfloor t/48\rfloor\ge t/96`$ gives
 q\ge\frac{t}{384}.
 ```
 
-For $`1\le t<48`$, Section 3 gives $`q\ge1\ge t/384`$. This completes the uniform lower bound for every real $`t\ge1`$.
+For $`1\le t\lt 48`$, Section 3 gives $`q\ge1\ge t/384`$. This completes the uniform lower bound for every real $`t\ge1`$.
 
 ## 6. Dimension, controls, and the scope of the reduction
 

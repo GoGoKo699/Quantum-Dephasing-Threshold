@@ -9,12 +9,12 @@ The implementation is [verification/pair_sampler.py](../verification/pair_sample
 Let $`A`$ and $`B`$ be exact Hermitian-involution oracles, with normalized generator
 
 ```math
-\mathcal L_2=\frac12(\operatorname{Ad}_A+\operatorname{Ad}_B)-\operatorname{id}.
+\mathcal L_2=\frac12(\mathrm{Ad}_A+\mathrm{Ad}_B)-\mathrm{id}.
 ```
 
-Supply a nonnegative rational time $`t`$ and a rational accuracy $`0<\epsilon\le1`$. The target norm is the full diamond norm, on arbitrary system inputs and arbitrary untouched references. The case $`t=0`$ returns the identity with no query and no random bit.
+Supply a nonnegative rational time $`t`$ and a rational accuracy $`0\lt \epsilon\le1`$. The target norm is the full diamond norm, on arbitrary system inputs and arbitrary untouched references. The case $`t=0`$ returns the identity with no query and no random bit.
 
-For $`t>0`$, define the following integers:
+For $`t\gt 0`$, define the following integers:
 
 ```math
 u=\left\lceil\log_2\frac8\epsilon\right\rceil,
@@ -30,7 +30,7 @@ L=\log_2 K.
 All ceilings in (1) can be computed by integer comparisons and integer square roots. No floating logarithm or square root is needed. The simulator applies at most
 
 ```math
-Q=K/2<2m
+Q=K/2\lt 2m
 ```
 
 reflection queries on every run. In particular,
@@ -51,17 +51,17 @@ r=\left\lceil\log_2\frac{32K}{\epsilon}\right\rceil.
 \tag{3}
 ```
 
-Its classical preprocessing uses $`O(K\log K\,\operatorname{poly}(b))`$ bit operations, where $`b`$ accounts for the rational input length and $`\log((2+t)K/\epsilon)`$. Ordinary classical storage is $`O(K\operatorname{poly}(b))`$ bits. The cost is charged even for a single use; repeated uses at the same time and accuracy can reuse the table. The proof and the more explicit accounting follow.
+Its classical preprocessing uses $`O(K\log K\,\mathrm{poly}(b))`$ bit operations, where $`b`$ accounts for the rational input length and $`\log((2+t)K/\epsilon)`$. Ordinary classical storage is $`O(K\mathrm{poly}(b))`$ bits. The cost is charged even for a single use; repeated uses at the same time and accuracy can reuse the table. The proof and the more explicit accounting follow.
 
 ## 2. A finite cyclic endpoint distribution
 
-Let $`S_t=N_+-N_-`$ with independent $`N_\pm\sim\operatorname{Poisson}(t/2)`$. The exact pair channel applies $`W_{S_t}`$, as proved in [pair simulation](pair-simulation.md). Define
+Let $`S_t=N_+-N_-`$ with independent $`N_\pm\sim\mathrm{Poisson}(t/2)`$. The exact pair channel applies $`W_{S_t}`$, as proved in [pair simulation](pair-simulation.md). Define
 
 ```math
 \phi_j=e^{t(\cos(2\pi j/K)-1)},
 \qquad
 q_a=\frac1K\sum_{j=0}^{K-1}\phi_j e^{-2\pi i ja/K},
-\qquad 0\le a<K.
+\qquad 0\le a\lt K.
 \tag{4}
 ```
 
@@ -78,17 +78,17 @@ Thus $`q`$ is an ordinary probability distribution. Send residue $`a`$ to its si
 ```math
 \sigma(a)=
 \begin{cases}
-a,&0\le a<K/2,\\
-a-K,&K/2\le a<K.
+a,&0\le a\lt K/2,\\
+a-K,&K/2\le a\lt K.
 \end{cases}
 ```
 
-The coupling $`a=S_t\bmod K`$ produces exactly the original word whenever $`-K/2\le S_t<K/2`$. Outside that interval, the two output channels can differ by at most two in diamond norm. The endpoint bound from [pair simulation, Eq. (9)](pair-simulation.md#4-a-hard-query-cap-for-arbitrary-accuracy) gives
+The coupling $`a=S_t\bmod K`$ produces exactly the original word whenever $`-K/2\le S_t\lt K/2`$. Outside that interval, the two output channels can differ by at most two in diamond norm. The endpoint bound from [pair simulation, Eq. (9)](pair-simulation.md#4-a-hard-query-cap-for-arbitrary-accuracy) gives
 
 ```math
 \begin{aligned}
 \left\|
-\sum_a q_a\operatorname{Ad}_{W_{\sigma(a)}}-e^{t\mathcal L_2}
+\sum_a q_a\mathrm{Ad}_{W_{\sigma(a)}}-e^{t\mathcal L_2}
 \right\|_\diamond
 &\le2\Pr\{|S_t|\ge K/2\}\\
 &\le4e^{-u}\\
@@ -99,7 +99,7 @@ The coupling $`a=S_t\bmod K`$ produces exactly the original word whenever $`-K/2
 
 The inequality $`e^{-u}\le2^{-u}`$ lets the certificate use rational numbers throughout. The boundary event in (6) is a harmless enlargement: the representative $`-K/2`$ itself is preserved.
 
-This construction approximates an endpoint distribution. It never generates the underlying $`\operatorname{Poisson}(t)`$ count or an individual jump history.
+This construction approximates an endpoint distribution. It never generates the underlying $`\mathrm{Poisson}(t)`$ count or an individual jump history.
 
 ## 3. Certified elementary-function inputs
 
@@ -114,36 +114,36 @@ Use fixed-point numbers with scale $`D=2^p`$. An interval is a pair of integers 
 
 The required roots of unity and values $`\phi_j`$ are enclosed as follows.
 
-1. **The constant $`\pi`$.** Use Machin's identity
+**The constant $`\pi`$.** Use Machin's identity
 
-   ```math
-   \pi=16\arctan(1/5)-4\arctan(1/239).
-   ```
+```math
+\pi=16\arctan(1/5)-4\arctan(1/239).
+```
 
-   Each arctangent is evaluated by its alternating series. Stop when the next term is at most $`1/D`$, and include that signed remainder in the interval.
+Each arctangent is evaluated by its alternating series. Stop when the next term is at most $`1/D`$, and include that signed remainder in the interval.
 
-2. **Sine and cosine.** Reduce the indices to angles in $`[0,\pi]`$, using reflection symmetry for the remaining Fourier values. Taylor polynomials are evaluated by interval recurrences. Since the argument is smaller than four in magnitude, after cosine degree $`2n`$ and sine degree $`2n+1`$ the remainders are bounded by
+**Sine and cosine.** Reduce the indices to angles in $`[0,\pi]`$, using reflection symmetry for the remaining Fourier values. Taylor polynomials are evaluated by interval recurrences. Since the argument is smaller than four in magnitude, after cosine degree $`2n`$ and sine degree $`2n+1`$ the remainders are bounded by
 
-   ```math
-   \frac{4^{2n+2}}{(2n+2)!},\qquad
-   \frac{4^{2n+3}}{(2n+3)!},
-   ```
+```math
+\frac{4^{2n+2}}{(2n+2)!},\qquad
+\frac{4^{2n+3}}{(2n+3)!},
+```
 
-   respectively. The next zero Taylor coefficient has been included when applying the Lagrange remainder theorem. Choose $`n`$ so that both bounds are at most $`1/D`$. Intersect the resulting intervals with $`[-1,1]`$. The special angles zero, $`\pi/2`$, and $`\pi`$ are represented exactly.
+respectively. The next zero Taylor coefficient has been included when applying the Lagrange remainder theorem. Choose $`n`$ so that both bounds are at most $`1/D`$. Intersect the resulting intervals with $`[-1,1]`$. The special angles zero, $`\pi/2`$, and $`\pi`$ are represented exactly.
 
-3. **The negative exponential.** For an enclosed nonnegative value $`x=t(1-\cos\theta)`$, evaluate $`e^{-x}`$ monotonically at its two interval endpoints. Put
+**The negative exponential.** For an enclosed nonnegative value $`x=t(1-\cos\theta)`$, evaluate $`e^{-x}`$ monotonically at its two interval endpoints. Put
 
-   ```math
-   h=\left\lceil\log_2\frac{16}{\eta}\right\rceil.
-   ```
+```math
+h=\left\lceil\log_2\frac{16}{\eta}\right\rceil.
+```
 
-   If an endpoint is at least $`h`$, the enclosure $`[0,2^{-h}]`$ is valid. For an endpoint below $`h`$, divide by a power of two until the argument is at most $`1/4`$, evaluate the alternating exponential series there, and repeatedly square its enclosing interval. A degree-$`n`$ polynomial has remainder at most
+If an endpoint is at least $`h`$, the enclosure $`[0,2^{-h}]`$ is valid. For an endpoint below $`h`$, divide by a power of two until the argument is at most $`1/4`$, evaluate the alternating exponential series there, and repeatedly square its enclosing interval. A degree-$`n`$ polynomial has remainder at most
 
-   ```math
-   \frac{4^{-(n+1)}}{(n+1)!}.
-   ```
+```math
+\frac{4^{-(n+1)}}{(n+1)!}.
+```
 
-   Intersect each intermediate result with $`[0,1]`$. The number of squarings is $`O(\log h)`$, even when the original physical time is large.
+Intersect each intermediate result with $`[0,1]`$. The number of squarings is $`O(\log h)`$, even when the original physical time is large.
 
 Each midpoint is a fixed-point integer. Increase $`p`$ by doubling it until exact rational comparisons certify that every root coordinate and every $`\phi_j`$ midpoint has error at most $`\eta/4`$, and that $`D\ge8/\eta`$. No unverifiable rounding assumption enters this acceptance test. A termination and bit-complexity bound is given in Section 7.
 
@@ -200,7 +200,7 @@ Some approximate outputs can be slightly negative. Clip them at zero to obtain $
 ```math
 \|a-q\|_1\le\delta,
 \qquad |Z-1|\le\delta,
-\qquad Z>0.
+\qquad Z\gt 0.
 ```
 
 The normalized probabilities $`v=a/Z`$ obey
@@ -306,13 +306,13 @@ with fixed constants independent of $`t,K,\epsilon`$. Its cutoff contribution is
 There are $`O(Kp)`$ elementary-function interval operations and $`KL/2`$ FFT butterflies. Every integer has $`O(b+\log K)`$ bits, including the input-dependent exponent arithmetic and the growing unnormalized FFT values. Ordinary integer multiplication and division suffice, so the bit cost is
 
 ```math
-O\!\left(K\log K\,\operatorname{poly}(b)\right).
+O\!\left(K\log K\,\mathrm{poly}(b)\right).
 \tag{15}
 ```
 
 This expression charges the elementary-function evaluation, the FFT, clipping, normalization, and dyadic table construction. A quadratic-length direct discrete Fourier transform would not give (15); the radix-two factorization is essential to the stated preprocessing cost.
 
-During construction, the arrays require $`O(K\operatorname{poly}(b))`$ ordinary classical bits. After construction, the cumulative table requires $`O(Kr)`$ bits. Each sample uses exactly $`r=O(\log(K/\epsilon))`$ random bits and $`O(\log K)`$ comparisons of $`r`$-bit integers. Driving the alternating oracle sequence requires a counter of $`O(\log K)`$ bits and at most $`O(Q\log K)`$ classical bit operations under a simple binary-counter accounting.
+During construction, the arrays require $`O(K\mathrm{poly}(b))`$ ordinary classical bits. After construction, the cumulative table requires $`O(Kr)`$ bits. Each sample uses exactly $`r=O(\log(K/\epsilon))`$ random bits and $`O(\log K)`$ comparisons of $`r`$-bit integers. Driving the alternating oracle sequence requires a counter of $`O(\log K)`$ bits and at most $`O(Q\log K)`$ classical bit operations under a simple binary-counter accounting.
 
 The table is read by a classical processor before the gate sequence is applied. It is never queried in superposition, loaded into amplitudes, or assumed available through QRAM. Random bits may be classical; if generated by measuring a reusable qubit, their gates and measurements can instead be charged explicitly.
 
