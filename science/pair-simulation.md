@@ -12,23 +12,25 @@ Let $`A`$ and $`B`$ be Hermitian involutions on an arbitrary finite-dimensional 
 A=A^\dagger,\qquad B=B^\dagger,\qquad A^2=B^2=I.
 ```
 
-Write $`\operatorname{Ad}_U(\rho)=U\rho U^\dagger`$. The normalized generator is
+Write $`\mathrm{Ad}_U(\rho)=U\rho U^\dagger`$. The normalized generator is
 
 ```math
 \mathcal L_2
-=\frac12\bigl(\operatorname{Ad}_A+\operatorname{Ad}_B\bigr)
--\operatorname{id}.
+=\frac12\bigl(\mathrm{Ad}_A+\mathrm{Ad}_B\bigr)
+-\mathrm{id}.
 ```
 
-The total jump rate is one. Put $`\mathcal P=(\operatorname{Ad}_A+\operatorname{Ad}_B)/2`$. Since the identity superoperator commutes with every superoperator,
+The total jump rate is one. Put $`\mathcal P=(\mathrm{Ad}_A+\mathrm{Ad}_B)/2`$. Since the identity superoperator commutes with every superoperator,
 
 ```math
+\begin{aligned}
 e^{t\mathcal L_2}
-=e^{-t}\sum_{n=0}^{\infty}\frac{t^n}{n!}\mathcal P^n.
+&=e^{-t}\sum_{n=0}^{\infty}\frac{t^n}{n!}\mathcal P^n.
+\end{aligned}
 \tag{1}
 ```
 
-Thus an exact trajectory description first draws $`N\sim\operatorname{Poisson}(t)`$ and then applies $`N`$ independent fair choices of $`A`$ and $`B`$. Equation (1) follows directly from the exponential series; it is an identity of channels, including on inputs entangled with an untouched reference. The constant-rate trajectory viewpoint also appears in the general simulation framework of [Borras and Marvian, Section 4](https://arxiv.org/html/2509.10425v2).
+Thus an exact trajectory description first draws $`N\sim\mathrm{Poisson}(t)`$ and then applies $`N`$ independent fair choices of $`A`$ and $`B`$. Equation (1) follows directly from the exponential series; it is an identity of channels, including on inputs entangled with an untouched reference. The constant-rate trajectory viewpoint also appears in the general simulation framework of [Borras and Marvian, Section 4](https://arxiv.org/html/2509.10425v2).
 
 Directly generating and applying all these letters has expected cost $`t`$. The following reduction acts on their product before it is applied to the system.
 
@@ -36,7 +38,7 @@ Directly generating and applying all these letters has expected cost $`t`$. The 
 
 Represent a word in **chronological order**, so the first listed letter is the first gate applied. Delete every adjacent pair $`AA`$ or $`BB`$. The operator product is unchanged because $`A^2=B^2=I`$. A stack implements this reduction: a new letter cancels the top letter if they agree, and otherwise is pushed onto the stack. Every surviving nonempty word alternates.
 
-Index alternating words by signed integers. Let $`W_0=I`$. For $`s>0`$, apply $`s`$ alternating gates beginning with $`A`$. For $`s<0`$, apply $`|s|`$ alternating gates beginning with $`B`$. For example,
+Index alternating words by signed integers. Let $`W_0=I`$. For $`s\gt 0`$, apply $`s`$ alternating gates beginning with $`A`$. For $`s\lt 0`$, apply $`|s|`$ alternating gates beginning with $`B`$. For example,
 
 | Coordinate | Chronological gates | Resulting operator |
 |---|---|---|
@@ -56,8 +58,10 @@ B W_s=W_{T_B(s)},
 ```
 
 ```math
-T_A(s)=s+(-1)^s,\qquad
-T_B(s)=s-(-1)^s.
+\begin{aligned}
+T_A(s)&=s+(-1)^s,\\
+T_B(s)&=s-(-1)^s.
+\end{aligned}
 \tag{2}
 ```
 
@@ -70,37 +74,45 @@ The abstract graph in this argument is the Cayley graph of $`\mathbb Z_2*\mathbb
 Let $`S_t`$ be the coordinate after the Poisson number of steps in (1). Splitting a rate-one Poisson process into independent fair right and left events gives
 
 ```math
-S_t=N_+-N_-,\qquad
-N_+,N_-\ \text{independent},\qquad
-N_+,N_-\sim\operatorname{Poisson}(t/2).
+\begin{aligned}
+S_t&=N_+-N_-,\qquad\\
+N_+,N_-&\ \text{independent},\qquad\\
+N_+,N_-&\sim\mathrm{Poisson}(t/2).
+\end{aligned}
 \tag{3}
 ```
 
 The signed endpoint has the symmetric Skellam distribution. Its probabilities can be defined without special-function notation by
 
 ```math
+\begin{aligned}
 p_s(t)
-=e^{-t}\sum_{j=0}^{\infty}
-\frac{(t/2)^{2j+|s|}}{j!(j+|s|)!}
-=e^{-t}I_{|s|}(t),
+&=e^{-t}\sum_{j=0}^{\infty}
+\frac{(t/2)^{2j+|s|}}{j!(j+|s|)!}\\
+&=e^{-t}I_{|s|}(t),
 \qquad s\in\mathbb Z,
+\end{aligned}
 \tag{4}
 ```
 
 where the last equality defines the relevant modified Bessel function. Equivalently, the characteristic and moment-generating functions are
 
 ```math
-\mathbb E e^{i\theta S_t}=e^{t(\cos\theta-1)},
-\qquad
-\mathbb E e^{\lambda S_t}=e^{t(\cosh\lambda-1)}.
+\begin{aligned}
+\mathbb E e^{i\theta S_t}&=e^{t(\cos\theta-1)},
+\qquad\\
+\mathbb E e^{\lambda S_t}&=e^{t(\cosh\lambda-1)}.
+\end{aligned}
 \tag{5}
 ```
 
 **Exact pair identity.** For every $`t\ge 0`$ and every pair of Hermitian involutions,
 
 ```math
+\begin{aligned}
 e^{t\mathcal L_2}
-=\sum_{s\in\mathbb Z}p_s(t)\operatorname{Ad}_{W_s}.
+&=\sum_{s\in\mathbb Z}p_s(t)\mathrm{Ad}_{W_s}.
+\end{aligned}
 \tag{6}
 ```
 
@@ -109,9 +121,11 @@ e^{t\mathcal L_2}
 An ideal exact draw from (4) requires $`|S_t|`$ reflection queries. Its first two moments satisfy
 
 ```math
-\mathbb E S_t=0,\qquad
-\mathbb E S_t^2=t,\qquad
-\mathbb E|S_t|\le\sqrt t.
+\begin{aligned}
+\mathbb E S_t&=0,\qquad\\
+\mathbb E S_t^2&=t,\qquad\\
+\mathbb E|S_t|&\le\sqrt t.
+\end{aligned}
 \tag{7}
 ```
 
@@ -121,15 +135,17 @@ The final inequality is Cauchy–Schwarz. It is an expected-cost statement. A wo
 
 Throughout this project, an error $`\epsilon`$ means **full diamond norm**, without the factor of one half sometimes used in channel-distance conventions.
 
-For $`x>0`$ and $`t>0`$, the endpoint obeys the two-sided Bernstein bound
+For $`x\gt 0`$ and $`t\gt 0`$, the endpoint obeys the two-sided Bernstein bound
 
 ```math
+\begin{aligned}
 \Pr\{|S_t|\ge x\}
-\le 2\exp\!\left[-\frac{x^2}{2(t+x/3)}\right].
+&\le 2\exp\!\left[-\frac{x^2}{2(t+x/3)}\right].
+\end{aligned}
 \tag{8}
 ```
 
-Here is a direct proof that also fixes the constants. For $`0\le\lambda<3`$,
+Here is a direct proof that also fixes the constants. For $`0\le\lambda\lt 3`$,
 
 ```math
 \cosh\lambda-1
@@ -139,12 +155,14 @@ Here is a direct proof that also fixes the constants. For $`0\le\lambda<3`$,
 
 The last inequality follows term by term from $`n!\ge2\cdot3^{n-2}`$ for $`n\ge2`$. Apply the exponential Markov inequality to (5) and set $`\lambda=x/(t+x/3)`$. This gives the upper-tail exponent in (8). Symmetry gives the lower tail and the factor two.
 
-In particular, for every $`u>0`$,
+In particular, for every $`u\gt 0`$,
 
 ```math
+\begin{aligned}
 x\ge\sqrt{2tu}+u
 \quad\Longrightarrow\quad
 \Pr\{|S_t|\ge x\}\le2e^{-u}.
+\end{aligned}
 \tag{9}
 ```
 
@@ -155,16 +173,16 @@ For a simple capped construction, choose
 ```math
 u=\ln(4/\epsilon),\qquad
 M=\left\lceil\sqrt{2tu}+u\right\rceil,
-\qquad 0<\epsilon\le1.
+\qquad 0\lt \epsilon\le1.
 ```
 
-Draw the exact endpoint. Apply $`W_{S_t}`$ if $`|S_t|<M`$; otherwise apply the identity. If $`\mathcal F_{t,M}`$ denotes this channel, then
+Draw the exact endpoint. Apply $`W_{S_t}`$ if $`|S_t|\lt M`$; otherwise apply the identity. If $`\mathcal F_{t,M}`$ denotes this channel, then
 
 ```math
 \begin{aligned}
 \bigl\|\mathcal F_{t,M}-e^{t\mathcal L_2}\bigr\|_\diamond
 &\le\sum_{|s|\ge M}p_s(t)
-\bigl\|\operatorname{id}-\operatorname{Ad}_{W_s}\bigr\|_\diamond\\
+\bigl\|\mathrm{id}-\mathrm{Ad}_{W_s}\bigr\|_\diamond\\
 &\le2\Pr\{|S_t|\ge M\}\\
 &\le\epsilon.
 \end{aligned}
@@ -188,10 +206,12 @@ Drawing a Poisson trajectory and reducing it after the fact would still spend ex
 For an even power of two $`K`$, sample the residue of $`S_t`$ modulo $`K`$ and choose its representative in $`[-K/2,K/2-1]`$. Its exact probabilities are
 
 ```math
-q_r=
+\begin{aligned}
+q_r&=
 \frac1K\sum_{j=0}^{K-1}
 e^{t(\cos(2\pi j/K)-1)}e^{-2\pi i jr/K},
 \qquad r=0,\ldots,K-1.
+\end{aligned}
 \tag{11}
 ```
 
@@ -209,7 +229,7 @@ The [finite-bit construction](sampling-and-resources.md) computes (11) by an int
 K=O\!\left(\sqrt{t\log(1/\epsilon)}+\log(1/\epsilon)\right)
 ```
 
-and classical preprocessing $`O(K\log K\,\operatorname{poly}(b))`$, where $`b`$ counts input length and required arithmetic precision. There is no loop over the Poisson jump count and no coherent probability-loading operation.
+and classical preprocessing $`O(K\log K\,\mathrm{poly}(b))`$, where $`b`$ counts input length and required arithmetic precision. There is no loop over the Poisson jump count and no coherent probability-loading operation.
 
 ## 6. Interpretation and limits
 

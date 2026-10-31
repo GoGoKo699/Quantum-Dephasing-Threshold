@@ -6,12 +6,12 @@ The generator is
 
 ```math
 \mathcal L_k=\frac1k\sum_{j=1}^{k}
-\bigl(\operatorname{Ad}_{R_j}-\operatorname{Id}\bigr),
+\bigl(\mathrm{Ad}_{R_j}-\mathrm{Id}\bigr),
 \qquad R_j=R_j^\dagger,
 \qquad R_j^2=I.
 ```
 
-Here $`\operatorname{Ad}_{R_j}(\rho)=R_j\rho R_j`$. The task is to implement the full channel $`e^{t\mathcal L_k}`$ on arbitrary inputs and reference systems. For fixed unhalved diamond error $`\epsilon=1/100`$ and real $`t\ge1`$, its dimension-uniform worst-case serial query cost is
+Here $`\mathrm{Ad}_{R_j}(\rho)=R_j\rho R_j`$. The task is to implement the full channel $`e^{t\mathcal L_k}`$ on arbitrary inputs and reference systems. For fixed unhalved diamond error $`\epsilon=1/100`$ and real $`t\ge1`$, its dimension-uniform worst-case serial query cost is
 
 ```math
 Q_1(t)=1,\qquad

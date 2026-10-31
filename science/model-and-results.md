@@ -18,10 +18,10 @@ R_j=R_j^\dagger,\qquad R_j^2=I,
 The supplied tuple may include repeated reflections and the identity. Define
 
 ```math
-\operatorname{Ad}_{R_j}(\rho)=R_j\rho R_j,
+\mathrm{Ad}_{R_j}(\rho)=R_j\rho R_j,
 \qquad
 \mathcal L_k=\frac1k\sum_{j=1}^{k}
-  \bigl(\operatorname{Ad}_{R_j}-\operatorname{Id}\bigr),
+  \bigl(\mathrm{Ad}_{R_j}-\mathrm{Id}\bigr),
 \qquad
 \Phi_t=e^{t\mathcal L_k}.
 ```
@@ -73,7 +73,7 @@ Q_2(t,\epsilon_0)=\Theta(\sqrt t),
 Q_3(t,\epsilon_0)=\Theta(t).
 ```
 
-The same orders hold for any other fixed $`0<\epsilon\le1/100`$, with constants allowed to depend on that fixed error. This is a statement about time dependence at fixed accuracy, not an optimal joint time-and-precision theorem.
+The same orders hold for any other fixed $`0\lt \epsilon\le1/100`$, with constants allowed to depend on that fixed error. This is a statement about time dependence at fixed accuracy, not an optimal joint time-and-precision theorem.
 
 | Supplied reflections | Universal simulation | Converse and dimension |
 |---|---|---|
@@ -88,7 +88,7 @@ Q_2(t,\epsilon)
 \ge \frac{1-e^{-(1-\cos1)}-2\epsilon}{2}\sqrt t,
 \qquad
 Q_3(t,\epsilon)\ge\frac{t}{384}
-\quad (0<\epsilon\le1/100).
+\quad (0\lt \epsilon\le1/100).
 ```
 
 The one-reflection endpoint and general parity lower-bound method are inherited ingredients. The fixed two-versus-three classification is the contribution studied here; [Related work](../references/related-work.md) identifies the relevant existing results and exact model distinctions.
@@ -99,13 +99,13 @@ For each fixed $`k\ge3`$, the worst-case order is also $`\Theta(t)`$. Pad a thre
 
 ## 4. The general linear upper bound
 
-Set $`\mathcal T=k^{-1}\sum_j\operatorname{Ad}_{R_j}`$. Since the identity superoperator commutes with $`\mathcal T`$,
+Set $`\mathcal T=k^{-1}\sum_j\mathrm{Ad}_{R_j}`$. Since the identity superoperator commutes with $`\mathcal T`$,
 
 ```math
 \Phi_t=e^{-t}\sum_{n=0}^{\infty}\frac{t^n}{n!}\mathcal T^n.
 ```
 
-Thus draw $`N\sim\operatorname{Poisson}(t)`$ and apply $`N`$ independently uniform reflection labels. This exact mixture has an unbounded query count, so it does not alone meet the model's branchwise cap.
+Thus draw $`N\sim\mathrm{Poisson}(t)`$ and apply $`N`$ independently uniform reflection labels. This exact mixture has an unbounded query count, so it does not alone meet the model's branchwise cap.
 
 Choose
 
@@ -113,10 +113,10 @@ Choose
 n_{\max}=\left\lceil2t+2\log(4/\epsilon)\right\rceil.
 ```
 
-On a branch with $`N>n_{\max}`$, apply the identity instead. This replacement is trace preserving and uses at most $`n_{\max}`$ oracle calls. The exponential-moment bound with parameter $`\log2`$ gives
+On a branch with $`N\gt n_{\max}`$, apply the identity instead. This replacement is trace preserving and uses at most $`n_{\max}`$ oracle calls. The exponential-moment bound with parameter $`\log2`$ gives
 
 ```math
-\Pr(N>n_{\max})
+\Pr(N\gt n_{\max})
 \le e^{t-n_{\max}\log2}
 \le\epsilon/4.
 ```
