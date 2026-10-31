@@ -14,6 +14,9 @@ Scientific question: determine how one, two and three supplied reflection dephas
 - Reproduction commands, tested domains and finite-check limits: verification/README.md
 - Certified sampling implementation: verification/pair_sampler.py
 - Numerical and combinatorial checks: verification/check_pair_sampler.py and verification/check_channels.py
+- Learning entrypoint and relation between the common map and proofs: learning/README.md
+- Single educational anchor, verified Childs section mapping, notation translation and missing project connections: learning/CHILDS_BRIDGE.md
+- Exactly 30 project-defined understanding targets, two phases and earlier-milestone dependencies: learning/MILESTONES.md
 
 ## Preserve these distinctions
 
@@ -22,3 +25,7 @@ The theorem is a dimension-uniform worst-case oracle-query law at fixed small un
 The lower bounds allow coherent SELECT, external controls, inverse queries, ancillas, measurements and adaptation. The pair witness is a qubit. The three-reflection witness has exponential dimension in time and is not promised to be spatially local. Arbitrary oracle-independent computation is free only in the query model; the sampling/resources page separately charges its implementation. Finite numerical checks support specified identities and witnesses; the linked analytic proofs establish asymptotic and diamond-norm claims.
 
 For a conceptual explanation, connect single-reflection parity, two-reflection diffusion on a line and three-reflection outward motion on a tree. For a theorem audit, begin with the model and lower-bound compiler. For reproduction, follow verification/README.md and distinguish the exact integer sampler certificates from floating-point comparison diagnostics.
+
+## Study route
+
+Use Andrew M. Childs's Lecture Notes on Quantum Algorithms, author PDF dated 17 April 2025, as the single educational anchor: https://www.cs.umd.edu/~amchilds/qa/qa.pdf . The bridge gives targeted section references; the map organizes this project's scientific story. For a question about one milestone, follow its dependencies and source pointers, then consult the linked canonical science for exact assumptions and proofs. The bridge supplies the channel, semigroup, probability and oracle-reduction connections that the selected reading does not supply for this project. The common map records understanding targets, not a particular reader's progress.
