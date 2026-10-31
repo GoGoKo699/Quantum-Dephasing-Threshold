@@ -23,8 +23,10 @@ Write $`\mathrm{Ad}_U(\rho)=U\rho U^\dagger`$. The normalized generator is
 The total jump rate is one. Put $`\mathcal P=(\mathrm{Ad}_A+\mathrm{Ad}_B)/2`$. Since the identity superoperator commutes with every superoperator,
 
 ```math
+\begin{aligned}
 e^{t\mathcal L_2}
-=e^{-t}\sum_{n=0}^{\infty}\frac{t^n}{n!}\mathcal P^n.
+&=e^{-t}\sum_{n=0}^{\infty}\frac{t^n}{n!}\mathcal P^n.
+\end{aligned}
 \tag{1}
 ```
 
@@ -72,37 +74,45 @@ The abstract graph in this argument is the Cayley graph of $`\mathbb Z_2*\mathbb
 Let $`S_t`$ be the coordinate after the Poisson number of steps in (1). Splitting a rate-one Poisson process into independent fair right and left events gives
 
 ```math
-S_t=N_+-N_-,\qquad
-N_+,N_-\ \text{independent},\qquad
-N_+,N_-\sim\mathrm{Poisson}(t/2).
+\begin{aligned}
+S_t&=N_+-N_-,\qquad\\
+N_+,N_-&\ \text{independent},\qquad\\
+N_+,N_-&\sim\mathrm{Poisson}(t/2).
+\end{aligned}
 \tag{3}
 ```
 
 The signed endpoint has the symmetric Skellam distribution. Its probabilities can be defined without special-function notation by
 
 ```math
+\begin{aligned}
 p_s(t)
-=e^{-t}\sum_{j=0}^{\infty}
-\frac{(t/2)^{2j+|s|}}{j!(j+|s|)!}
-=e^{-t}I_{|s|}(t),
+&=e^{-t}\sum_{j=0}^{\infty}
+\frac{(t/2)^{2j+|s|}}{j!(j+|s|)!}\\
+&=e^{-t}I_{|s|}(t),
 \qquad s\in\mathbb Z,
+\end{aligned}
 \tag{4}
 ```
 
 where the last equality defines the relevant modified Bessel function. Equivalently, the characteristic and moment-generating functions are
 
 ```math
-\mathbb E e^{i\theta S_t}=e^{t(\cos\theta-1)},
-\qquad
-\mathbb E e^{\lambda S_t}=e^{t(\cosh\lambda-1)}.
+\begin{aligned}
+\mathbb E e^{i\theta S_t}&=e^{t(\cos\theta-1)},
+\qquad\\
+\mathbb E e^{\lambda S_t}&=e^{t(\cosh\lambda-1)}.
+\end{aligned}
 \tag{5}
 ```
 
 **Exact pair identity.** For every $`t\ge 0`$ and every pair of Hermitian involutions,
 
 ```math
+\begin{aligned}
 e^{t\mathcal L_2}
-=\sum_{s\in\mathbb Z}p_s(t)\mathrm{Ad}_{W_s}.
+&=\sum_{s\in\mathbb Z}p_s(t)\mathrm{Ad}_{W_s}.
+\end{aligned}
 \tag{6}
 ```
 
@@ -111,9 +121,11 @@ e^{t\mathcal L_2}
 An ideal exact draw from (4) requires $`|S_t|`$ reflection queries. Its first two moments satisfy
 
 ```math
-\mathbb E S_t=0,\qquad
-\mathbb E S_t^2=t,\qquad
-\mathbb E|S_t|\le\sqrt t.
+\begin{aligned}
+\mathbb E S_t&=0,\qquad\\
+\mathbb E S_t^2&=t,\qquad\\
+\mathbb E|S_t|&\le\sqrt t.
+\end{aligned}
 \tag{7}
 ```
 
@@ -126,8 +138,10 @@ Throughout this project, an error $`\epsilon`$ means **full diamond norm**, with
 For $`x\gt 0`$ and $`t\gt 0`$, the endpoint obeys the two-sided Bernstein bound
 
 ```math
+\begin{aligned}
 \Pr\{|S_t|\ge x\}
-\le 2\exp\!\left[-\frac{x^2}{2(t+x/3)}\right].
+&\le 2\exp\!\left[-\frac{x^2}{2(t+x/3)}\right].
+\end{aligned}
 \tag{8}
 ```
 
@@ -192,10 +206,12 @@ Drawing a Poisson trajectory and reducing it after the fact would still spend ex
 For an even power of two $`K`$, sample the residue of $`S_t`$ modulo $`K`$ and choose its representative in $`[-K/2,K/2-1]`$. Its exact probabilities are
 
 ```math
-q_r=
+\begin{aligned}
+q_r&=
 \frac1K\sum_{j=0}^{K-1}
 e^{t(\cos(2\pi j/K)-1)}e^{-2\pi i jr/K},
 \qquad r=0,\ldots,K-1.
+\end{aligned}
 \tag{11}
 ```
 

@@ -17,13 +17,12 @@ Supply a nonnegative rational time $`t`$ and a rational accuracy $`0\lt \epsilon
 For $`t\gt 0`$, define the following integers:
 
 ```math
-u=\left\lceil\log_2\frac8\epsilon\right\rceil,
-\qquad
-m=\left\lceil\sqrt{2tu}\right\rceil+u,
-\qquad
-K=2^{\lceil\log_2(2m)\rceil},
-\qquad
-L=\log_2 K.
+\begin{aligned}
+u&=\left\lceil\log_2\frac8\epsilon\right\rceil,\qquad\\
+m&=\left\lceil\sqrt{2tu}\right\rceil+u,\qquad\\
+K&=2^{\lceil\log_2(2m)\rceil},\qquad\\
+L&=\log_2 K.
+\end{aligned}
 \tag{1}
 ```
 
@@ -36,18 +35,21 @@ Q=K/2\lt 2m
 reflection queries on every run. In particular,
 
 ```math
-Q=O\!\left(\sqrt{t\log(4/\epsilon)}+\log(4/\epsilon)\right).
+\begin{aligned}
+Q&=O\!\left(\sqrt{t\log(4/\epsilon)}+\log(4/\epsilon)\right).
+\end{aligned}
 \tag{2}
 ```
 
 **Finite-bit sampling theorem.** The implementation below constructs a dyadic probability table, samples it using a fixed number of unbiased classical bits, and applies one alternating word. The resulting channel $`\widetilde{\mathcal E}_{t,\epsilon}`$ satisfies
 
 ```math
+\begin{aligned}
 \left\|\widetilde{\mathcal E}_{t,\epsilon}-e^{t\mathcal L_2}\right\|_\diamond
-\le\frac4{2^u}+\frac\epsilon{32}+\frac K{2^r}
-\le\frac{9\epsilon}{16},
-\qquad
-r=\left\lceil\log_2\frac{32K}{\epsilon}\right\rceil.
+&\le\frac4{2^u}+\frac\epsilon{32}+\frac K{2^r}\\
+&\le\frac{9\epsilon}{16},\qquad\\
+r&=\left\lceil\log_2\frac{32K}{\epsilon}\right\rceil.
+\end{aligned}
 \tag{3}
 ```
 
@@ -58,10 +60,11 @@ Its classical preprocessing uses $`O(K\log K\,\mathrm{poly}(b))`$ bit operations
 Let $`S_t=N_+-N_-`$ with independent $`N_\pm\sim\mathrm{Poisson}(t/2)`$. The exact pair channel applies $`W_{S_t}`$, as proved in [pair simulation](pair-simulation.md). Define
 
 ```math
-\phi_j=e^{t(\cos(2\pi j/K)-1)},
-\qquad
-q_a=\frac1K\sum_{j=0}^{K-1}\phi_j e^{-2\pi i ja/K},
-\qquad 0\le a\lt K.
+\begin{aligned}
+\phi_j&=e^{t(\cos(2\pi j/K)-1)},\qquad\\
+q_a&=\frac1K\sum_{j=0}^{K-1}\phi_j e^{-2\pi i ja/K},\qquad\\
+0&\le a\lt K.
+\end{aligned}
 \tag{4}
 ```
 
@@ -108,7 +111,9 @@ This construction approximates an endpoint distribution. It never generates the 
 The Fourier transform must also be computed at finite precision. Set
 
 ```math
-\eta=\frac{\epsilon}{128K(L+2)}.
+\begin{aligned}
+\eta&=\frac{\epsilon}{128K(L+2)}.
+\end{aligned}
 \tag{7}
 ```
 
@@ -233,9 +238,10 @@ d=T-\sum_j w_j
 lies between zero and $`K-1`$. Add one to each of the first $`d`$ entries. This produces nonnegative integer weights summing exactly to $`T`$, with
 
 ```math
-\left|\frac{w_j}{T}-v_j\right|\le\frac1T,
-\qquad
-\left\|\frac wT-v\right\|_1\le\frac K{2^r}\le\frac\epsilon{32}.
+\begin{aligned}
+\left|\frac{w_j}{T}-v_j\right|&\le\frac1T,\qquad\\
+\left\|\frac wT-v\right\|_1&\le\frac K{2^r}\le\frac\epsilon{32}.
+\end{aligned}
 \tag{12}
 ```
 
@@ -246,8 +252,10 @@ Apply the alternating word corresponding to $`\sigma(a)`$. Its first gate is $`A
 For any fixed set of channels $`\mathcal U_j`$,
 
 ```math
+\begin{aligned}
 \left\|\sum_j(p_j-q_j)\mathcal U_j\right\|_\diamond
-\le\sum_j|p_j-q_j|.
+&\le\sum_j|p_j-q_j|.
+\end{aligned}
 \tag{13}
 ```
 
@@ -304,7 +312,9 @@ The precision-refinement procedure terminates at $`p=O(\log(2+t)+\log(K/\epsilon
 Consequently a characteristic-value interval has width at most
 
 ```math
-O\!\left(\frac{(1+t)p^2+hp}{2^p}\right)+2^{-h},
+\begin{aligned}
+&O\!\left(\frac{(1+t)p^2+hp}{2^p}\right)+2^{-h},
+\end{aligned}
 \tag{14}
 ```
 
@@ -313,7 +323,9 @@ with fixed constants independent of $`t,K,\epsilon`$. Its cutoff contribution is
 There are $`O(Kp)`$ elementary-function interval operations and $`KL/2`$ FFT butterflies. Every integer has $`O(b+\log K)`$ bits, including the input-dependent exponent arithmetic and the growing unnormalized FFT values. Ordinary integer multiplication and division suffice, so the bit cost is
 
 ```math
-O\!\left(K\log K\,\mathrm{poly}(b)\right).
+\begin{aligned}
+&O\!\left(K\log K\,\mathrm{poly}(b)\right).
+\end{aligned}
 \tag{15}
 ```
 
@@ -332,8 +344,10 @@ If implementations of the reflections use at most $`G`$ elementary gates and $`w
 The exact rational time used by the sampler and the accuracy of the implemented oracles can be accounted for separately. For $`s,t\ge0`$,
 
 ```math
+\begin{aligned}
 \|e^{t\mathcal L_2}-e^{s\mathcal L_2}\|_\diamond
-\le2|t-s|,
+&\le2|t-s|,
+\end{aligned}
 \tag{16}
 ```
 
@@ -342,9 +356,11 @@ because $`\|\mathcal L_2\|_\diamond\le2`$ and every intervening semigroup channe
 Thus a sampler built for rational time $`\widetilde t`$ and accuracy parameter $`\epsilon`$ has total physical implementation error at most
 
 ```math
-\frac{9\epsilon}{16}
+\begin{aligned}
+&\frac{9\epsilon}{16}
 +2|t-\widetilde t|
 +2Q\delta.
+\end{aligned}
 \tag{17}
 ```
 
