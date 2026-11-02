@@ -130,3 +130,7 @@ The classification concerns uniform simulation of full autonomous quantum channe
 The three-reflection construction uses $`\Theta(t)`$ target qubits and need not be geometrically local. The theorem gives no linear lower bound at fixed target dimension and no practical hardware speedup. It also does not charge every reflection as one elementary gate: a reflection may be costly to realize physically. These qualifications connect the oracle statement to its physical meaning, developed in [Interpretation](interpretation.md).
 
 The finite checks in [Verification](../verification/README.md) independently exercise the channel identities, direct sampler, qubit signal and finite tree construction. Their numerical results are diagnostics; the asymptotic and full diamond-norm claims rest on the analytic arguments above and in the linked proof pages.
+
+## Specified coherent field as a separate output
+
+For the same reflection primitives, a phase-fixed vacuum dilation can instead return the full emitted field and discard the final system. The [field-output account](field-output.md) defines that channel, its exact physical encoding and its half-diamond error convention. It has the same worst-case time exponents, but its pair and triple converse arguments use field-only witnesses. In particular, the original tree witness here is field-blind on its root input; known leaf-$`Z`$ loops give a different triple witnessing coherent-field hardness.

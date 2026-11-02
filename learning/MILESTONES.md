@@ -1,394 +1,376 @@
-# Thirty milestones for the dephasing threshold
+# Thirty milestones for the system and field reflection threshold
 
-This map follows the question of how many calls to unknown reflections are needed to reproduce their continuous-time noise. Its route connects the physical output requirement to an accelerated simulator and then to lower bounds that apply to arbitrary quantum algorithms.
+This common map develops the reduced-system theorem and the receiving consequence for its sister’s specified coherent field. The single educational anchor is **John Watrous, [*The Theory of Quantum Information* (2018 author draft)](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf)**. The [Watrous bridge](WATROUS_BRIDGE.md) translates notation, error conventions and output spaces, then supplies the project-specific probability and query arguments absent from the book.
 
-The threshold statements concern every real $`t\ge1`$ and a fixed accuracy $`0\lt\epsilon\le0.01`$, with the worst case taken over finite system dimensions. The pair construction also gives explicit bounds as accuracy varies.
+| Phase | Milestones | Scientific purpose |
+|---|---|---|
+| Background/preliminaries | M01–M12 | Connect states, channels, reflection oracles, probability, distinguishability and output choices into the two precise tasks. |
+| Narrative/innovation | M13–M30 | Complete the system algorithm and lower bounds, test their field transfer, and assemble the distinct field witnesses with their resource limits. |
 
-The single educational anchor is **Andrew M. Childs, *Lecture Notes on Quantum Algorithms*, 17 April 2025**, in the [author-hosted edition][childs]. Section numbers below refer to that edition; PDF links open at the relevant starting page. The [source-to-project bridge](CHILDS_BRIDGE.md) translates the anchor into this model. Density operators, complete positivity, the diamond norm, Poissonization, and the certified finite-bit sampler are supplied in the bridge and scientific pages. Their Childs pointers identify the relevant circuit, approximation, walk, or query-method foundations.
+There are **12 background milestones and 18 narrative milestones**. The allocation reflects the interface between physical channel outputs and oracle algorithms. Within each phase the route proceeds from local objects and mechanisms to a global synthesis. Dependencies refer only to earlier IDs and may be transitive. These are reader-independent understanding targets, not a progress or assessment record.
 
-## Allocation and dependency convention
-
-| Phase | Milestones | Scientific purpose | Synthesis |
-|---|---|---|---|
-| Background/preliminaries | M01–M12 | Join quantum registers and channels, coherent oracle access, error accounting, and probabilistic trajectories into a precise simulation problem. | M12 states the complete task and the obligations of its upper and lower bounds. |
-| Narrative/innovation | M13–M30 | Develop the cancellation mechanism, complete its algorithmic resources, and connect two distinct lower-bound arguments to the threshold. | M30 assembles the theorem, its physical meaning, and its limits. |
-
-The allocation is **12 background milestones and 18 narrative milestones**. The foundations require three interfaces to be made explicit: a circuit must implement a channel on an existing input, a stochastic evolution must have a bounded query implementation, and a simulator must be convertible into a query algorithm for a lower bound. The longer narrative phase follows these interfaces through the pair sampler and the finite-tree reduction. Each phase proceeds from individual objects to the complete scientific account.
-
-Every milestone belongs to the phase containing its heading. Dependencies name earlier IDs and may be transitive. They describe logical prerequisites, not a prescribed reading schedule. Understanding targets group related steps; the linked scientific pages retain the full calculations and specialist details.
+The reduced-system theorem uses unhalved diamond error 0.01; the specified field theorem uses half diamond error 0.1. Both are fixed-error, dimension-uniform worst-case statements for t at least one. Neither triple lower bound proves fixed-dimension linear long-time hardness. The full proofs and specialist details remain in the scientific sources.
 
 ## Phase I — Background/preliminaries
 
-### M01 — Registers, operations, and observable outcomes
+### M01 — Registers and observable outcomes
 
-**Central question:** What does a quantum algorithm act on, and what can its output reveal?
+**Central question:** What is retained when a quantum device produces an output?
 
-**Understanding target:** Interpret basis states, superpositions, tensor-product registers, unitary operations, and measurement probabilities. Distinguish the system whose evolution is requested from extra registers used to carry out an algorithm.
+**Understanding target:** Interpret system, reference and field registers, states, unitary operations and measured event probabilities. Distinguish an existing input from auxiliary registers prepared by a simulator.
 
-**Dependencies and story role:** None. This supplies the concrete objects to which the channel and oracle definitions will apply.
+**Dependencies and story role:** None. These are the objects on which the model acts.
 
-**Conceptual connection:** A computational basis can label a qubit, a graph vertex, or an oracle address; the mathematical operation must be specified on all superpositions of those labels.
+**Conceptual connection:** The same initial state can produce different operational outputs after different factors are traced.
 
-**Source pointers:** [Childs §§1.1–1.2][childs-1]; [bridge §3](CHILDS_BRIDGE.md#3-from-state-vectors-to-full-quantum-channels); [model §2](../science/model-and-results.md#2-access-output-and-error).
+**Source pointers:** Watrous Chapter 1 and §2.2; [bridge §2](WATROUS_BRIDGE.md#2-translate-the-objects-and-conventions).
 
-### M02 — What the reflection promise gives
+### M02 — The reflection promise
 
-**Central question:** Which consequences follow from supplying a Hermitian involution?
+**Central question:** Which algebraic information is known about an unknown reflection?
 
-**Understanding target:** Explain why $`R^\dagger=R`$ and $`R^2=I`$ make the same operation its own inverse and restrict its eigenvalues to $`\pm1`$. Separate these known algebraic properties from the unknown eigenbasis and matrix entries.
+**Understanding target:** Explain Hermiticity, involution and the eigenvalues plus/minus one, while keeping its eigenbasis and matrix entries unknown. Identify why identical adjacent calls cancel.
 
-**Dependencies and story role:** M01. The local oracle promise supplies the cancellation relation used throughout the project.
+**Dependencies and story role:** M01. The local promise supplies the later word relation.
 
-**Conceptual connection:** Reflection geometry becomes an algorithmic resource because consecutive equal calls cancel exactly, even when two supplied reflections fail to commute.
+**Conceptual connection:** The promise gives an exact operation identity without a classical matrix description.
 
-**Source pointers:** [Childs §1.2][childs-1]; [bridge §2](CHILDS_BRIDGE.md#2-translating-the-oracle-model); [model §1](../science/model-and-results.md#1-the-physical-evolution).
+**Source pointers:** Watrous Chapter 1; [model §1](../science/model-and-results.md#1-the-physical-evolution).
 
-### M03 — From random operations to full quantum channels
+### M03 — Mixtures as physical channels
 
-**Central question:** How can classical randomness describe a quantum evolution on an unknown input?
+**Central question:** Why does a random reflection sequence define a channel on every input?
 
-**Understanding target:** Interpret a density operator and a convex mixture of unitary conjugations. Explain complete positivity and trace preservation through the implemented random branches, including an arbitrary entangled reference register on which the simulator acts trivially.
+**Understanding target:** Explain density operators, unitary conjugation, Kraus operators and trace preservation. Include an arbitrary untouched reference in the physical requirement.
 
-**Dependencies and story role:** M01–M02. This replaces a description of one state trajectory by the physical map that must be simulated.
+**Dependencies and story role:** M01–M02. This promotes trajectories to the channel to be simulated.
 
-**Conceptual connection:** Sampling a classical word and applying it to the existing system implements the same channel for every input; no preparation or knowledge of that input is required.
+**Conceptual connection:** A random choice independent of the input implements the same CPTP map on every input.
 
-**Source pointers:** [Childs §§1.1–1.2][childs-1] for the register foundations; [bridge §3](CHILDS_BRIDGE.md#3-from-state-vectors-to-full-quantum-channels); [pair simulation §1](../science/pair-simulation.md#1-model-and-exact-poisson-expansion).
+**Source pointers:** Watrous §2.2; [bridge §3](WATROUS_BRIDGE.md#3-from-reflection-noise-to-a-channel-and-its-dilation).
 
-### M04 — Operational error with a reference
+### M04 — Reference-preserving error
 
-**Central question:** What does it mean to approximate the requested evolution uniformly?
+**Central question:** What uniform accuracy does the simulator owe its user?
 
-**Understanding target:** Explain the unhalved diamond-norm convention, its maximization over inputs and references, and why channel error at most $`\epsilon`$ changes any final event probability by at most $`\epsilon/2`$. Identify the stronger obligation of a channel guarantee compared with a calculation for one chosen input.
+**Understanding target:** Read the diamond norm as a channel distinguishability guarantee on all input/reference states. Translate the system’s unhalved convention into a bound on every event probability.
 
-**Dependencies and story role:** M03. This fixes the common error currency for upper bounds, implementation accuracy, and lower-bound measurements.
+**Dependencies and story role:** M03. The common error currency controls simulation and reductions.
 
-**Conceptual connection:** The same norm certifies a random-word simulator and limits the loss of success when that simulator is used to solve a hidden-bit problem.
+**Conceptual connection:** A chosen witness input can prove hardness although an upper algorithm must handle all inputs.
 
-**Source pointers:** [Childs §2.1][childs-2] for the approximation starting point; [bridge §3](CHILDS_BRIDGE.md#3-from-state-vectors-to-full-quantum-channels); [model §2](../science/model-and-results.md#2-access-output-and-error).
+**Source pointers:** Watrous §§3.1, 3.3; [model §2](../science/model-and-results.md#2-access-output-and-error).
 
-### M05 — The supplied oracle interface
+### M05 — Phase-referenced SELECT access
 
-**Central question:** What information about the reflections can an algorithm obtain in one query?
+**Central question:** What can one oracle call do coherently?
 
-**Understanding target:** Interpret individual reflection calls, coherent $`\mathrm{SELECT}`$, and external controlled calls. Distinguish unknown operations from arbitrary known processing, and understand that coherent access, including its phases, is part of the supplied interface.
+**Understanding target:** Interpret individual, selected, inverse and externally controlled reflection calls, including unused labels. Keep supplied access separate from arbitrary known processing.
 
-**Dependencies and story role:** M01–M02. This defines the algorithms against which the lower bounds must hold.
+**Dependencies and story role:** M01–M02. This defines all allowed simulation strategies.
 
-**Conceptual connection:** An algorithm may keep the choice of reflection in superposition. Proving hardness only for a sampled sequence of classical labels would leave that access unaddressed.
+**Conceptual connection:** A lower bound against sampled classical words alone would miss coherent SELECT algorithms.
 
-**Source pointers:** [Childs §§21.1–21.2][childs-21]; [bridge §2](CHILDS_BRIDGE.md#2-translating-the-oracle-model); [lower bounds §1](../science/lower-bounds.md#1-statements-and-oracle-conventions).
+**Source pointers:** Watrous §2.2 for channels; [bridge §2](WATROUS_BRIDGE.md#2-translate-the-objects-and-conventions); [oracle conventions](../science/lower-bounds.md#1-statements-and-oracle-conventions).
 
-### M06 — Reversible access and returned workspace
+### M06 — Clean reversible workspace
 
-**Central question:** How can a query-dependent action be carried out without leaving unwanted information behind?
+**Central question:** How can an unknown-bit-controlled operation return its work registers?
 
-**Understanding target:** Explain compute–query–uncompute using an ordinary input-bit oracle. Track address, answer, control, and work registers separately, including branches on which the intended operation is inactive. Identify which cleanup operations must themselves query the input.
+**Understanding target:** Track address, active flag, buffer, answer and external control through compute–query–uncompute. Explain why reading and erasing an unknown bit both cost calls.
 
-**Dependencies and story role:** M01, M05. This prepares the exact oracle compiler needed to turn a hypothetical simulator into an ordinary bit-query algorithm.
+**Dependencies and story role:** M05. This prepares the exact reduction compiler.
 
-**Conceptual connection:** Classical knowledge of a graph edge can be computed reversibly; the unknown bit attached to that edge must be read and erased through the allowed oracle.
+**Conceptual connection:** Known graph attributes are reversible arithmetic; the attached unknown bit is an oracle resource.
 
-**Source pointers:** [Childs §1.4][childs-reversible] and [§21.2][childs-queries]; [bridge §10](CHILDS_BRIDGE.md#10-compiling-the-coherent-oracle); [lower bounds §5.4](../science/lower-bounds.md#54-compiling-a-controlled-select-into-two-ordinary-bit-queries).
+**Source pointers:** Watrous §2.2; [bridge §7](WATROUS_BRIDGE.md#7-tree-parity-for-the-system); [SELECT compiler](../science/lower-bounds.md#54-compiling-a-controlled-select-into-two-ordinary-bit-queries).
 
-### M07 — A resource bound that holds on every branch
+### M07 — Branchwise query and implementation costs
 
-**Central question:** Which costs are included when a stochastic simulation is called fast?
+**Central question:** Which costs support the word “fast”?
 
-**Understanding target:** Distinguish the maximum serial number of oracle calls from an expected count. Account separately for classical preprocessing, random bits, memory, known gates, input representation, and any synthesis cost for a supplied oracle.
+**Understanding target:** Distinguish a serial cap on every branch from an expected query count or parallel depth. Account separately for known gates, classical compilation, randomness, precision, memory and output.
 
-**Dependencies and story role:** M03, M05. This prevents a distributional description from being mistaken for a complete bounded-cost algorithm.
+**Dependencies and story role:** M03, M05. This makes the algorithmic claim complete.
 
-**Conceptual connection:** A short typical trajectory is useful only after its tails and the work of sampling it have been brought into the resource contract.
+**Conceptual connection:** Oracle savings do not make an arbitrary supplied reflection or a long output cheap to realize.
 
-**Source pointers:** [Childs §21.1][childs-21] and [Chapter 27][childs-27]; [model §2](../science/model-and-results.md#2-access-output-and-error); [sampling and resources §§7–8](../science/sampling-and-resources.md#7-classical-time-precision-and-memory).
+**Source pointers:** Watrous §2.2 as circuit-channel foundation; [sampling/resources §§7–8](../science/sampling-and-resources.md#7-classical-time-precision-and-memory).
 
-### M08 — Errors and oracle differences under composition
+### M08 — Hybrid replacement and contraction
 
-**Central question:** Why can local approximation errors be accumulated through an adaptive algorithm?
+**Central question:** Why do small oracle differences constrain every adaptive algorithm?
 
-**Understanding target:** Trace a telescoping replacement of one oracle call at a time. Connect an operator-norm difference of unitaries to a factor-two channel bound, and use contractivity under intervening physical processing to cover measurements, randomness, ancillas, and adaptive control.
+**Understanding target:** Explain one-call-at-a-time replacement and contraction under surrounding channels. Convert operator-norm oracle separation into a bound on measured output separation.
 
-**Dependencies and story role:** M04–M05, M07. This provides the common tool for gate-accuracy accounting and the qubit lower bound.
+**Dependencies and story role:** M04–M05, M07. This supports precision accounting and lower bounds.
 
-**Conceptual connection:** Childs §2.1 supplies unitary operator-norm telescoping; the local argument extends the comparison to full channels and their observable outputs.
+**Conceptual connection:** The same distinguishability norm pays for synthesis error and limits a simulator’s sensitivity.
 
-**Source pointers:** [Childs §2.1][childs-2]; [lower bounds §2](../science/lower-bounds.md#2-a-hybrid-inequality-for-arbitrary-adaptive-simulators); [sampling and resources §8](../science/sampling-and-resources.md#8-quantum-gates-and-implementation-accuracy).
+**Source pointers:** Watrous §§3.1, 3.3; [hybrid proof](../science/lower-bounds.md#2-a-hybrid-inequality-for-arbitrary-adaptive-simulators).
 
-### M09 — The autonomous generator and its rate-one clock
+### M09 — The rate-one Poisson clock
 
-**Central question:** How does the generator determine a distribution of jump histories?
+**Central question:** How does continuous reflection noise become a random word?
 
-**Understanding target:** Read $`\mathcal L_k=\frac1k\sum_j(\mathrm{Ad}_{R_j}-\mathrm{id})`$ as a time-independent generator with total jump rate one. Derive its Poisson expansion and identify why reflection conjugations make the evolution unital and the generator self-adjoint in the Hilbert–Schmidt inner product.
+**Understanding target:** Derive the exponential Poisson expansion from the autonomous generator. Explain total-rate normalization, unitality and Hilbert–Schmidt self-adjointness.
 
-**Dependencies and story role:** M02–M03. This connects the physical differential equation to a concrete random-word representation.
+**Dependencies and story role:** M02–M03. This connects dynamics with trajectories.
 
-**Conceptual connection:** Time normalization fixes how many opportunities for oracle-dependent motion occur; the generator exponential makes that clock exact.
+**Conceptual connection:** Holding total rate fixed prevents a third primitive from silently speeding the clock.
 
-**Source pointers:** [Childs §§27.1–27.2][childs-27] for the simulation setting; [bridge §4](CHILDS_BRIDGE.md#4-reflection-noise-and-the-poisson-clock); [pair simulation §1](../science/pair-simulation.md#1-model-and-exact-poisson-expansion).
+**Source pointers:** Watrous §2.2; [bridge §3](WATROUS_BRIDGE.md#3-from-reflection-noise-to-a-channel-and-its-dilation); [pair §1](../science/pair-simulation.md#1-model-and-exact-poisson-expansion).
 
-### M10 — From walk statistics to reliable events
+### M10 — Dilation and output choice
 
-**Central question:** Which probabilistic information is needed to control a simulation?
+**Central question:** Why is the coherent field different from a measured jump record or final system?
 
-**Understanding target:** Distinguish endpoint position, jump count, mean, variance, and tail probability for a continuous-time walk. Explain how Poissonization, a moment bound, and an exponential-moment bound answer different questions about typical motion and rare events.
+**Understanding target:** Use a Stinespring isometry to identify its two marginal channels. Explain why microscopic jump phases and an oracle-independent physical encoding are needed for the field.
 
-**Dependencies and story role:** M07, M09. This supplies the probability tools shared by the line upper bound and the finite-tree lower bound.
+**Dependencies and story role:** M03–M05, M09. This establishes the transfer boundary between sisters.
 
-**Conceptual connection:** Diffusive displacement can give a short endpoint description, while biased radial motion can make a distant computational label likely to be reached.
+**Conceptual connection:** Partial trace changes which trajectory overlaps are observable.
 
-**Source pointers:** [Childs §17.3][childs-walk]; [bridge §§6–7](CHILDS_BRIDGE.md#6-two-reflections-cancellation-produces-diffusion); [pair simulation §§3–4](../science/pair-simulation.md#3-exact-endpoint-law-and-exact-channel-identity).
+**Source pointers:** Watrous §2.2; [field contract](../science/field-output.md#fixed-microscopic-target).
 
-### M11 — Why parity forces many quantum queries
+### M11 — Probability and parity as proof tools
 
-**Central question:** How can a lower bound rule out every bounded-error quantum query algorithm?
+**Central question:** How can walk estimates and a query lower bound constrain a simulator?
 
-**Understanding target:** Explain why an algorithm with $`T`$ ordinary bit queries has acceptance probabilities of degree at most $`2T`$. Connect the full-parity Fourier character to the lower bound $`T\ge m/2`$ for parity of $`m`$ bits, including classical randomness and adaptive processing.
+**Understanding target:** Distinguish jump count, endpoint, mean, variance and tail probability. Explain the degree-at-most-twice-the-queries rule and why lower degree cannot correlate with all-bit parity.
 
-**Dependencies and story role:** M05–M08. This supplies the external hardness statement into which the three-reflection simulation problem will be reduced.
+**Dependencies and story role:** M06–M09. These are the project-supplied tools beyond the anchor.
 
-**Conceptual connection:** A physical output carrying parity can turn a fast simulator into an impossible low-degree algorithm. The project's parity-correlation proof uses no symmetrization step; Childs §21.4 is optional context.
+**Conceptual connection:** A physical output that reliably exposes parity converts simulation into a hard computation.
 
-**Source pointers:** [Childs §§21.2–21.3 and §21.5][childs-queries]; [lower bounds §5.5](../science/lower-bounds.md#55-applying-the-quantum-parity-bound); [standard-tool references](../science/lower-bounds.md#references-for-the-standard-lower-bound-tools).
+**Source pointers:** Watrous Chapter 1 for probability; [bridge §7](WATROUS_BRIDGE.md#7-tree-parity-for-the-system); [parity proof](../science/lower-bounds.md#55-applying-the-quantum-parity-bound).
 
-### M12 — Background synthesis: the complete simulation contract
+### M12 — Background synthesis: two precise tasks
 
-**Central question:** What exactly must a simulator achieve, and what would establish its optimal cost?
+**Central question:** What must be fixed before a system/field comparison is meaningful?
 
-**Understanding target:** Assemble the unknown reflection tuple, total rate, arbitrary system and reference input, full diamond error, and maximum branch query count into one task. Distinguish an upper bound valid for every tuple from a lower bound witnessed by a legal family, with a supremum over finite dimensions.
+**Understanding target:** Assemble reflection access, rates, phases, input/reference, requested marginal, encoding, error convention and serial query cap. Distinguish universal algorithms from finite-dimensional hard families.
 
-**Dependencies and story role:** M02, M04–M05, M07–M11. This integrates the foundations into the framework used by both sides of the theorem.
+**Dependencies and story role:** M01–M11. This joins all local definitions into the full contract.
 
-**Conceptual connection:** The physical output requirement, access model, probability estimates, and query lower-bound tools now have compatible meanings. A witness input can prove hardness even though a simulator must handle all inputs.
+**Conceptual connection:** Matching words and exponents do not identify channels with different retained outputs.
 
-**Source pointers:** [Childs §21.1][childs-21] and [Chapter 27][childs-27]; [model §§1–3](../science/model-and-results.md#1-the-physical-evolution); [interpretation §4](../science/interpretation.md#4-representation-and-resource-boundaries).
+**Source pointers:** Watrous §§2.2, 3.3; [model](../science/model-and-results.md); [field contract](../science/field-output.md#fixed-microscopic-target).
 
 ## Phase II — Narrative/innovation
 
-### M13 — One reflection leaves only jump parity
+### M13 — One reflection leaves parity
 
-**Central question:** How much of a long history survives when every jump is the same involution?
+**Central question:** Why can a long single-reflection history cost one query?
 
-**Understanding target:** Reduce a history to even or odd parity and obtain a mixture of the identity channel and one reflection conjugation. Combine the one-query implementation with the all-$`X`$/all-$`Z`$ witness to explain $`Q_1=1`$ for $`t\ge1`$ and fixed $`\epsilon\le0.01`$.
+**Understanding target:** Reduce powers to even/odd parity and derive the known identity/reflection mixture. Explain its coherent two-fiber version and separate the known field preparation cost.
 
-**Dependencies and story role:** M02–M04, M09, M12. This is the smallest complete instance of algebraic compression and matching query necessity.
+**Dependencies and story role:** M02–M04, M09–M12. This is a complete first endpoint of the hierarchy.
 
-**Conceptual connection:** The sampled jump count grows with time, but the operation it represents has only two possibilities.
+**Conceptual connection:** Many clock rings need not represent many distinct net operations.
 
-**Source pointers:** [Childs §1.2][childs-1] and [§21.1][childs-21]; [bridge §5](CHILDS_BRIDGE.md#5-one-reflection-only-jump-parity-matters); [lower bounds §3](../science/lower-bounds.md#3-a-constant-lower-bound-including-one-reflection).
+**Source pointers:** Watrous §2.2; [bridge §5](WATROUS_BRIDGE.md#5-one-reflection-then-every-pair); [one-reflection proof](../science/lower-bounds.md#3-a-constant-lower-bound-including-one-reflection).
 
-### M14 — Two reflections turn words into a line
+### M14 — Every pair has line geometry
 
-**Central question:** What information remains after all adjacent equal letters cancel?
+**Central question:** Why do noncommuting reflections still have a universal short-word description?
 
-**Understanding target:** Represent every reduced two-letter word by a signed integer, with its sign choosing the first chronological gate. Explain the alternating-word convention and why appending either reflection moves the abstract endpoint by one step.
+**Understanding target:** Reduce a two-letter word to an alternating word and assign its signed line endpoint. Explain why additional matrix relations can ease instances without invalidating this representation.
 
-**Dependencies and story role:** M02, M09–M10, M13. This identifies the mechanism that compresses every pair, including noncommuting pairs.
+**Dependencies and story role:** M02, M09, M13. This identifies the pair’s compression mechanism.
 
-**Conceptual connection:** The algebraic relation $`A^2=B^2=I`$ turns a history problem into endpoint motion on a line. Additional relations between the actual matrices preserve the validity of this representation.
+**Conceptual connection:** The abstract cancellation graph is a line even when the actual matrices have unknown extra identities.
 
-**Source pointers:** [Childs §17.3][childs-walk]; [bridge §6](CHILDS_BRIDGE.md#6-two-reflections-cancellation-produces-diffusion); [pair simulation §2](../science/pair-simulation.md#2-the-reduced-word-is-a-walk-on-a-line).
+**Source pointers:** Watrous Chapter 1; [pair §2](../science/pair-simulation.md#2-the-reduced-word-is-a-walk-on-a-line).
 
-### M15 — The exact endpoint law is already a channel identity
+### M15 — An endpoint law becomes an exact channel
 
-**Central question:** Which distribution of reduced words reproduces the entire pair evolution?
+**Central question:** What distribution applies the correct random operation?
 
-**Understanding target:** Derive $`S_t=N_+-N_-`$ with independent $`N_\pm\sim\mathrm{Poisson}(t/2)`$, its characteristic function, and the mixture of conjugations by $`W_{S_t}`$. Explain why equality of the random operations gives an exact identity on arbitrary inputs and references.
+**Understanding target:** Identify the symmetric Skellam endpoint probabilities and variance t. Explain why the reduced-word mixture equals the full semigroup before approximation.
 
-**Dependencies and story role:** M03–M04, M09–M10, M14. This upgrades word cancellation to the universal pair simulation formula.
+**Dependencies and story role:** M03, M09, M11, M14. This turns geometry into a physical identity.
 
-**Conceptual connection:** Childs §17.3 uses total rate two; its time $`t/2`$ matches the project's time $`t`$. The resulting Skellam law has variance $`t`$, which identifies the square-root length scale.
+**Conceptual connection:** The equality is at the operator/channel level and therefore includes arbitrary references.
 
-**Source pointers:** [Childs §17.3, Eq. (17.20)][childs-walk]; [pair simulation §3](../science/pair-simulation.md#3-exact-endpoint-law-and-exact-channel-identity); [bridge §6](CHILDS_BRIDGE.md#6-two-reflections-cancellation-produces-diffusion).
+**Source pointers:** Watrous §2.2; [pair §3](../science/pair-simulation.md#3-exact-endpoint-law-and-exact-channel-identity).
 
-### M16 — Tail probability becomes a physical query cap
+### M16 — Tails become a deterministic query cap
 
-**Central question:** How can an unbounded random description yield a simulator with a fixed maximum cost?
+**Central question:** How is an unbounded random history replaced by a valid bounded algorithm?
 
-**Understanding target:** Use the Skellam exponential-moment bound to choose a radius of order $`\sqrt{t\log(4/\epsilon)}+\log(4/\epsilon)`$. Replace rare branches by the identity channel and explain both complete positivity and the factor-two tail-to-diamond bound. Apply the same principle to the Poisson count to obtain the general linear upper bound.
+**Understanding target:** Use an endpoint tail bound and assign an ordinary legal channel to the tail. Compare probability-proportional system error with square-root coherent truncation error.
 
-**Dependencies and story role:** M04, M07, M10, M15. This converts endpoint statistics into the required worst-branch resource guarantee.
+**Dependencies and story role:** M04, M07, M10–M11, M15. This converts concentration into a branchwise guarantee.
 
-**Conceptual connection:** A controlled change to rare outcomes preserves a valid trace-preserving map and supplies the upper bounds against which both lower bounds will be compared.
+**Conceptual connection:** The output’s retained coherence determines the tail-to-error conversion.
 
-**Source pointers:** [Childs §2.1][childs-2] for error composition; [pair simulation §4](../science/pair-simulation.md#4-a-hard-query-cap-for-arbitrary-accuracy); [model §4](../science/model-and-results.md#4-the-general-linear-upper-bound).
+**Source pointers:** Watrous §§3.2–3.3; [pair §4](../science/pair-simulation.md#4-a-hard-query-cap-for-arbitrary-accuracy); [bridge §4](WATROUS_BRIDGE.md#4-error-as-an-operational-guarantee).
 
-### M17 — Sample the endpoint without generating the history
+### M17 — Sample without generating the history
 
-**Central question:** How is the square-root query saving retained in the classical preparation?
+**Central question:** How can the system pair speedup survive classical preprocessing?
 
-**Understanding target:** Interpret the finite Fourier formula for the law of $`S_t\bmod K`$. Map each residue to a short signed representative and bound the aliasing error by the endpoint tail, while avoiding generation of the underlying Poisson sequence.
+**Understanding target:** Explain cyclic endpoint aliasing, Fourier probabilities and a finite table. Show why this avoids a loop over the original Poisson count.
 
-**Dependencies and story role:** M07, M15–M16. This closes the gap between an endpoint existence formula and a directly computable distribution.
+**Dependencies and story role:** M07, M11, M15–M16. This removes a hidden linear sampling cost.
 
-**Conceptual connection:** Classical Fourier inversion gives a finite probability table whose size follows the endpoint scale. The table is used by a classical sampler, without coherent data loading.
+**Conceptual connection:** A short applied word alone would not imply a short end-to-end system algorithm.
 
-**Source pointers:** [Childs §17.3][childs-walk] for the walk starting point; [pair simulation §5](../science/pair-simulation.md#5-turning-the-endpoint-description-into-an-algorithm); [sampling and resources §2](../science/sampling-and-resources.md#2-a-finite-cyclic-endpoint-distribution).
+**Source pointers:** Watrous Chapter 1 for probability; [sampling §§2–3](../science/sampling-and-resources.md#2-a-finite-cyclic-endpoint-distribution).
 
-### M18 — Approximate arithmetic, exact physical validity
+### M18 — Approximate arithmetic and exact CPTP output
 
-**Central question:** How can finite-precision probabilities define an exactly valid quantum channel?
+**Central question:** Why does finite arithmetic still describe a legal simulation?
 
-**Understanding target:** Connect outward-rounded elementary-function intervals, the integer FFT error, clipping, normalization, and dyadic rounding into a certified probability calculation. Explain why the final weights are nonnegative and sum exactly to one, and how their $`\ell_1`$ error becomes full diamond error.
+**Understanding target:** Track certified elementary approximations, integer FFT error, clipping, normalization and dyadic rounding. Distinguish exact physical validity of each mixture from its certified approximation error.
 
-**Dependencies and story role:** M03–M04, M08, M17. This supplies the finite-bit implementation behind the ideal pair formula.
+**Dependencies and story role:** M03–M04, M16–M17. This completes the production sampler.
 
-**Conceptual connection:** Numerical approximation affects closeness to the target, while exact sampling of the normalized dyadic law preserves complete positivity and trace preservation. The combined aliasing and arithmetic certificate is at most $`9\epsilon/16`$.
+**Conceptual connection:** Nonnegative normalized weights make a physical channel even before its accuracy is assessed.
 
-**Source pointers:** [Childs §2.1][childs-2] for additive error accounting; [sampling and resources §§3–5](../science/sampling-and-resources.md#3-certified-elementary-function-inputs); [bridge §7](CHILDS_BRIDGE.md#7-from-diffusion-to-a-bounded-finite-bit-simulator).
+**Source pointers:** Watrous §2.2; [sampling §§4–5](../science/sampling-and-resources.md#4-error-of-the-integer-fft).
 
-### M19 — The complete pair implementation and its cost
+### M19 — Complete pair resource accounting
 
-**Central question:** Which resources accompany the reduced number of reflection calls?
+**Central question:** Which pair algorithm is cheap for which output?
 
-**Understanding target:** Account for $`O(K\log K\,\mathrm{poly}(b))`$ preprocessing bit operations, where $`b`$ includes rational input length and logarithmic precision. Track classical storage, fixed random-bit sampling, and the query cap; add time-rounding and oracle-synthesis errors and the conditional gate cost of implemented reflections.
+**Understanding target:** Combine sampling, word application, precision and storage costs for system output. Explain why a coherent field algorithm uncomputes endpoint workspace and may still write order-t output slots.
 
-**Dependencies and story role:** M07–M08, M16–M18. This completes the pair upper bound as an algorithm with charged preparation and implementation resources.
+**Dependencies and story role:** M07, M10, M14–M18. This joins the mechanism and its implementation limits.
 
-**Conceptual connection:** Efficient oracle use remains meaningful when the endpoint table is constructed for a single use, the unknown input is left in place, and oracle synthesis is charged separately. Analytic certificates and finite numerical diagnostics have distinct evidential roles.
+**Conceptual connection:** A classical endpoint sample and a coherent trajectory state have different output obligations.
 
-**Source pointers:** [Childs §2.1][childs-2] and [§§27.1–27.2][childs-27]; [sampling and resources §§7–9](../science/sampling-and-resources.md#7-classical-time-precision-and-memory); [verification: certificate scope](../verification/README.md#what-makes-the-sampler-certificate-different).
+**Source pointers:** Watrous §§2.2, 3.3; [sampling §§7–8](../science/sampling-and-resources.md#7-classical-time-precision-and-memory); [field resources](../science/field-output.md#separate-query-encoding-and-output-costs).
 
-### M20 — Nearby qubit oracles leave a finite channel signal
+### M20 — Nearby qubit oracles leave a finite system signal
 
-**Central question:** Can a pair of almost indistinguishable reflection oracles generate observably different long-time channels?
+**Central question:** How does a small axis perturbation yield square-root hardness?
 
-**Understanding target:** Analyze $`A=Z`$ and $`B_\theta=\cos\theta\,Z+\sin\theta\,X`$ with $`\theta=t^{-1/2}`$. Connect the exact Bloch-coordinate evolution to a constant output separation for every real $`t\ge1`$, while the oracle difference is only of order $`t^{-1/2}`$.
+**Understanding target:** Use the slow qubit decay mode at angle $`\theta=t^{-1/2}`$. Relate its constant final-system signal to the small controlled-oracle separation.
 
-**Dependencies and story role:** M02–M04, M09, M12. This constructs the witness that makes the square-root upper bound necessary already in dimension two.
+**Dependencies and story role:** M08, M12, M15. This supplies a converse independent of the sampled algorithm.
 
-**Conceptual connection:** A small tilt of the noise axes can accumulate an observable effect even though each query reveals only a small difference.
+**Conceptual connection:** Finite output distinguishability converts a small oracle perturbation into a many-query requirement.
 
-**Source pointers:** [Childs §§1.1–1.2][childs-1] and [§2.1][childs-2]; [lower bounds: exact channel signal](../science/lower-bounds.md#exact-channel-signal); [bridge §8](CHILDS_BRIDGE.md#8-why-the-square-root-cost-is-necessary).
+**Source pointers:** Watrous §§3.1, 3.3; [system pair lower bound](../science/lower-bounds.md#4-two-reflections-a-qubit-witness-for-square-root-time).
 
-### M21 — Pair synthesis: optimality beyond sampled trajectories
+### M21 — Pair synthesis: universality and optimality
 
-**Central question:** Why can coherent access and adaptive quantum processing not beat the square-root cost?
+**Central question:** What makes the square-root system classification sharp?
 
-**Understanding target:** Apply the hybrid inequality to the qubit witness, charge both channel-approximation errors, and infer $`\Omega(\sqrt t)`$ queries. Combine this lower bound with the finite-bit construction to state the optimal pair cost at fixed $`\epsilon\le0.01`$.
+**Understanding target:** Combine the universal channel algorithm and qubit hybrid witness. Retain fixed error, branchwise cap, all-input guarantee and nonquery resource accounting.
 
-**Dependencies and story role:** M05, M08, M12, M19–M20. This closes the pair argument across its physical, algorithmic, and oracle-complexity formulations.
+**Dependencies and story role:** M12, M16, M19–M20. This integrates the pair narrative.
 
-**Conceptual connection:** The short reduced word gives an upper bound; distinguishability of nearby legal oracles proves optimality for arbitrary simulators, including controlled queries and reference registers.
+**Conceptual connection:** An upper bound for all dimensions and one legal qubit lower family settle the same worst-case exponent.
 
-**Source pointers:** [Childs §2.1][childs-2] and [§§21.1–21.2][childs-21]; [lower bounds: oracle distance and query bound](../science/lower-bounds.md#oracle-distance-and-query-bound); [model §3](../science/model-and-results.md#3-the-query-threshold).
+**Source pointers:** Watrous §3.3; [model theorem](../science/model-and-results.md#3-the-query-threshold); [interpretation §2](../science/interpretation.md#2-the-line-behind-every-pair).
 
-### M22 — A third reflection creates outward radial motion
+### M22 — A third color permits outward motion
 
-**Central question:** How can individually reversible moves carry information a distance proportional to time?
+**Central question:** Why can reversible local moves propagate linearly far?
 
-**Understanding target:** Compare the two-letter reduced-word line with the three-letter tree. At a non-root interior vertex, identify two colors that increase depth and one that decreases it, yielding radial drift $`1/3`$ at total rate one despite symmetric traversal of every edge.
+**Understanding target:** Read the three-color reduced-word tree and explain its two outward/one inward choices. Distinguish reversibility of edges from zero radial drift.
 
-**Dependencies and story role:** M02, M09–M10, M14, M21. This identifies the geometric mechanism available to a hard triple after the universal pair case is closed.
+**Dependencies and story role:** M11, M14. This identifies the geometric change behind hardness.
 
-**Conceptual connection:** Branching changes the number of outward options. Reversibility of individual transitions and self-adjointness of the generator remain compatible with outward motion from the root.
+**Conceptual connection:** Branching creates a long outward transient without directed target control or reset.
 
-**Source pointers:** [Childs §17.3][childs-walk] for the line comparison and [§28.1][childs-noff] for the reduction setting; [interpretation §3](../science/interpretation.md#3-reversible-motion-can-move-outward); [lower bounds §5.3](../science/lower-bounds.md#53-a-uniform-finite-time-success-estimate).
+**Source pointers:** Watrous Chapter 1; [interpretation §3](../science/interpretation.md#3-reversible-motion-can-move-outward).
 
-### M23 — A finite legal triple of reflection oracles
+### M23 — A finite legal parity-carrying triple
 
-**Central question:** How is the tree mechanism realized by actual finite-dimensional Hermitian involutions?
+**Central question:** How are hidden bits placed in genuine reflection oracles?
 
-**Understanding target:** Construct the truncated tree of reduced three-letter words, color its edges, and use identity loops for missing boundary moves. Attach an input-bit label symmetrically to each edge and include its XOR action on an answer qubit, so each colored permutation squares to the identity.
+**Understanding target:** Define finite-tree colored edge swaps with symmetric depth-bit XORs and identity missing-edge actions. Verify involution, Hermiticity and the prefix-parity endpoint invariant.
 
-**Dependencies and story role:** M02, M05–M06, M12, M22. This turns the geometric picture into a legal hard-instance family.
+**Dependencies and story role:** M02, M06, M11, M22. This builds the legal system hard family.
 
-**Conceptual connection:** A boundary convention and symmetric edge labels are essential to obtaining exact finite oracles, with definite phases and no irreversible move hidden in the model.
+**Conceptual connection:** Backtracking cancels edge bits, so all paths reaching one vertex carry the same prefix parity.
 
-**Source pointers:** [Childs §1.4][childs-reversible] and [§28.1][childs-noff]; [lower bounds §5.1](../science/lower-bounds.md#51-the-finite-graph-and-its-reflections); [bridge §9](CHILDS_BRIDGE.md#9-three-reflections-a-tree-can-compute-parity).
+**Source pointers:** Watrous Chapter 1; [tree construction §§5.1–5.2](../science/lower-bounds.md#51-the-finite-graph-and-its-reflections).
 
-### M24 — Every trajectory carries the same prefix-parity invariant
+### M24 — Compile the strongest coherent access
 
-**Central question:** Why does a sufficiently deep endpoint reveal all the hidden input bits?
+**Central question:** Does the reduction preserve controlled SELECT on all branches?
 
-**Understanding target:** Explain why crossing depth $`\ell`$ toggles bit $`x_\ell`$ when $`\ell\le m`$, and why immediate or later backtracking cancels the corresponding contribution. Establish that a vertex at depth $`d`$ carries the parity of the first $`\min(d,m)`$ bits.
+**Understanding target:** Follow the exact two-bit-query implementation, including external controls, inactive addresses and buffer erasure. Explain why symmetric edge attributes permit cleanup after moving.
 
-**Dependencies and story role:** M11, M23. This supplies the computational information transported by the physical walk.
+**Dependencies and story role:** M05–M06, M23. This closes the access gap before using parity hardness.
 
-**Conceptual connection:** The tree's unique root-to-vertex path converts edgewise reversible updates into an endpoint invariant, so parity can be recovered without observing the jump history.
+**Conceptual connection:** A clean full oracle compiler is stronger than matching its action on classical visited vertices.
 
-**Source pointers:** [Childs §21.5][childs-parity] and [§28.1][childs-noff]; [lower bounds §5.2](../science/lower-bounds.md#52-the-answer-bit-along-every-trajectory); [bridge §9](CHILDS_BRIDGE.md#9-three-reflections-a-tree-can-compute-parity).
+**Source pointers:** Watrous §2.2; [compiler §5.4](../science/lower-bounds.md#54-compiling-a-controlled-select-into-two-ordinary-bit-queries).
 
-### M25 — The full controlled SELECT costs two bit queries
+### M25 — Reach enough bits inside a finite tree
 
-**Central question:** Does the hidden-bit reduction preserve the simulator's strongest permitted oracle access?
+**Central question:** How does the parity-carrying motion obtain a uniform success estimate?
 
-**Understanding target:** Follow the exact two-query compiler for coherent color selection and an external control. Compute the active edge flag and address, read the bit into a clean buffer, update the answer conditionally, erase the buffer, and uncompute the edge data after moving the vertex. Track inactive branches using an ordinary valid address whose two queries cancel.
+**Understanding target:** Use radial domination by a Poisson difference with mean t/3 and variance t. Combine the shallow-depth estimate with the finite outer-boundary tail in the system construction.
 
-**Dependencies and story role:** M05–M06, M23–M24. This closes the oracle-access gap before invoking a general query lower bound.
+**Dependencies and story role:** M09, M11, M22–M23. This quantifies the useful outward transient.
 
-**Conceptual connection:** Symmetric edge attributes make workspace cleanup possible from either endpoint. The construction needs no free controlled bit oracle, promised zero address, residual work, or uncontrolled global phase.
+**Conceptual connection:** Positive drift alone is insufficient; finite bounds ensure a constant probability of carrying linearly many bits.
 
-**Source pointers:** [Childs §1.4][childs-reversible] and [§21.2][childs-queries]; [lower bounds §5.4](../science/lower-bounds.md#54-compiling-a-controlled-select-into-two-ordinary-bit-queries); [bridge §10](CHILDS_BRIDGE.md#10-compiling-the-coherent-oracle).
+**Source pointers:** Watrous Chapter 1 for probability; [finite-time estimate](../science/lower-bounds.md#53-a-uniform-finite-time-success-estimate).
 
-### M26 — The finite tree reaches enough bits with high probability
+### M26 — Close the system parity reduction
 
-**Central question:** Can the outward-motion argument survive finite time and a finite boundary?
+**Central question:** Why can every accurate system simulator compute parity?
 
-**Understanding target:** Use $`m=\lfloor t/48\rfloor`$ and $`R=\lceil4t\rceil`$ for $`t\ge48`$. Couple radial depth to a difference of Poisson variables with mean $`t/3`$ and variance $`t`$, control shallow endpoints by Chebyshev's inequality, and bound boundary contact through the total Poisson jump count.
+**Understanding target:** Measure depth and answer, handle shallow outcomes by a fair guess, and include channel approximation error. Combine the two-query compiler with the parity degree bound and retain the exponential dimension qualification.
 
-**Dependencies and story role:** M09–M10, M22–M24. This supplies a uniform finite-instance success estimate for the encoded computation.
+**Dependencies and story role:** M04, M11, M23–M25. This completes the system linear lower bound.
 
-**Conceptual connection:** Positive drift alone is qualitative. The two probability bounds show that a constant fraction of the simulated time can reliably expose a linear number of bits inside the legal finite system.
+**Conceptual connection:** The dimension-uniform lower family may grow with t; no fixed-dimension or locality theorem follows.
 
-**Source pointers:** [Childs §17.3][childs-walk] and [§28.1][childs-noff] for the walk and reduction foundations; [lower bounds §5.3](../science/lower-bounds.md#53-a-uniform-finite-time-success-estimate); [bridge §9](CHILDS_BRIDGE.md#9-three-reflections-a-tree-can-compute-parity).
+**Source pointers:** Watrous §§3.1, 3.3; [parity reduction](../science/lower-bounds.md#55-applying-the-quantum-parity-bound); [dimension](../science/lower-bounds.md#6-dimension-controls-and-the-scope-of-the-reduction).
 
-### M27 — Close the reduction to a linear quantum lower bound
+### M27 — Trace the system and test the failed transfer
 
-**Central question:** How does accurate channel simulation become a bounded-error parity algorithm?
+**Central question:** Why does the original hard tree have an easy-to-distinguish system but a field-blind root witness?
 
-**Understanding target:** Measure endpoint depth, use the answer at depth at least $`m`$, and guess fairly otherwise. Include the $`\epsilon/2`$ success loss, obtain success above $`7/8`$, and combine the two-bit-query compiler with the parity bound to infer $`q\ge t/384`$. Use the constant lower bound to cover $`1\le t\lt48`$.
+**Understanding target:** Construct the depth-prefix coordinate change and show that it fixes the input while acting only on the final system. Conclude exact bit independence of the retained field for this witness.
 
-**Dependencies and story role:** M04, M11–M13, M16, M24–M26. This completes the three-reflection lower bound against arbitrary adaptive controlled-query algorithms.
+**Dependencies and story role:** M10, M23, M26. This tests the most vulnerable cross-project implication.
 
-**Conceptual connection:** The channel's output distribution becomes an operational computation. Together with the generic upper bound from M16, the reduction yields $`Q_3=\Theta(t)`$ at fixed accuracy.
+**Conceptual connection:** Partial trace removes the gauge dependence; a system measurement cannot be reused as a field observable.
 
-**Source pointers:** [Childs §21.5][childs-parity] and [§28.1][childs-noff]; [lower bounds §5.5](../science/lower-bounds.md#55-applying-the-quantum-parity-bound); [model §§3–4](../science/model-and-results.md#3-the-query-threshold).
+**Source pointers:** Watrous §2.2; [failed-transfer identity](../science/field-output.md#why-the-original-system-parity-witness-does-not-transfer).
 
-### M28 — The dimension and representation qualifications
+### M28 — The pair writes a dark-port field signal
 
-**Central question:** Over which families of physical systems does the threshold theorem hold?
+**Central question:** How can two qubit reflections remain hard after discarding the system?
 
-**Understanding target:** Interpret the supremum over finite dimensions and the hard-tree size $`D=6\cdot2^R-4=\exp(\Theta(t))`$, which has an $`O(t)`$-qubit encoding. Distinguish a worst-case triple from every triple, a supplied reflection count from intrinsic dissipative rank, and the proved regime from fixed-dimension long-time or locality claims.
+**Understanding target:** Use symmetric tilted reflections and a fixed bath beamsplitter. Derive the dark Poisson mean $`t\sin^2\theta`$ and identify the constant gap at $`\theta=t^{-1/2}`$.
 
-**Dependencies and story role:** M05, M07, M12, M21, M23, M27. This reconciles the upper and lower quantifiers before stating the global conclusion.
+**Dependencies and story role:** M08, M10, M20, M27. This supplies a genuinely retained field witness.
 
-**Conceptual connection:** Identity padding extends hardness to each fixed $`k\ge3`$ after a time rescaling, with constants depending on $`k`$. The hard family needs no explicit exponentially large graph table, but its growing system size remains part of the theorem.
+**Conceptual connection:** Number-conserving bath interference reveals oracle information absent from original-bath count records.
 
-**Source pointers:** [Childs §21.1][childs-21] and [§28.1][childs-noff]; [lower bounds §6](../science/lower-bounds.md#6-dimension-controls-and-the-scope-of-the-reduction); [model: fixed larger numbers](../science/model-and-results.md#every-fixed-larger-number); [interpretation §4](../science/interpretation.md#4-representation-and-resource-boundaries).
+**Source pointers:** Watrous §3.1; [field pair witness](../science/field-output.md#a-qubit-field-witness-for-the-pair).
 
-### M29 — What is new, and which comparisons preserve the task
+### M29 — Leaf loops transfer full parity to the coherent field
 
-**Central question:** Which contribution remains after inherited tools and nearby simulation results are accounted for?
+**Central question:** How can a triple repair the failed root-field witness?
 
-**Understanding target:** Separate the standard parity method and known single-involution compression from the universal pair algorithm and fixed-three-involution hardness result. Compare prior growing-number reflection hardness, general dissipative lower bounds, and reversible-chain acceleration using their actual oracle, normalization, and output requirements.
+**Understanding target:** Replace missing leaf transitions by known Z at depth $`\lfloor t/48\rfloor`$. Follow the surviving full-parity loop sign, the leaf-occupation overlap bound, unchanged two-query compiler and loss under total-number dephasing.
 
-**Dependencies and story role:** M03–M05, M11, M13, M19, M21, M27–M28. This places the theorem within its research context without broadening its novelty claim.
+**Dependencies and story role:** M10–M11, M24–M27. This establishes the separate field linear obstruction and its phase boundary.
 
-**Conceptual connection:** Childs §28.1 concerns sparse-Hamiltonian parity transport; the present reduction supplies finite undirected reflection noise. Coherent Markov-chain state preparation also has a different output contract from a full trace-preserving channel on an arbitrary input.
+**Conceptual connection:** A coordinate change now leaves a field-observable loop phase; the output’s photon-number coherence is load-bearing.
 
-**Source pointers:** [Childs §28.1][childs-noff] and optional [§18.2][childs-markov]; [related work: comparison criteria](../references/related-work.md#problem-and-comparison-criteria), [prior reflection-noise research](../references/related-work.md#related-unpublished-reflection-noise-research), and [contribution](../references/related-work.md#contribution-separated-from-its-ingredients).
+**Source pointers:** Watrous §§2.2, 3.1–3.2; [field triple](../science/field-output.md#three-reflections-can-write-parity-into-the-field); [sister proof](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/56295fc4db2a35521792d43c62231bce756e538d/science/reflection_tree.md).
 
-### M30 — Global synthesis: the constant, square-root, and linear law
+### M30 — Global synthesis: geometry, retained information and resources
 
-**Central question:** Why does the complete argument establish a sharp change between two and three supplied reflections?
+**Central question:** What does the joint system/field account establish?
 
-**Understanding target:** Connect single-reflection parity, the pair's diffusive endpoint and certified sampler, the qubit hybrid witness, and finite-tree parity transport to $`Q_1=1`$, $`Q_2=\Theta(\sqrt t)`$, and $`Q_3=\Theta(t)`$. State the fixed-accuracy, real-time, channel, oracle, and dimension qualifications alongside the result and its charged implementation resources.
+**Understanding target:** Assemble both constant/square-root/linear classifications with their precise output, error, oracle, phase and dimension conventions. Credit the routine coherent upper lift and inherited parity scaffold, locate the field-only additions, and keep encoding/output work separate.
 
-**Dependencies and story role:** M12–M13, M16, M19, M21, M27–M29. This integrates the full narrative, including what each proof establishes and what remains outside its scope.
+**Dependencies and story role:** M12–M13, M19, M21, M26–M29. This integrates the whole story and its limitations.
 
-**Conceptual connection:** The number of supplied reflections changes the possible geometry of reduced histories. Full-channel error and unrestricted oracle lower bounds turn that geometry into an optimal simulation classification; the analytical proofs establish universality, while the finite checks support the implementation and conventions.
+**Conceptual connection:** Shared word geometry controls upper cost while the retained information determines which lower witness is valid.
 
-**Source pointers:** [Childs §§21.1–21.5][childs-21] and [§28.1][childs-noff]; [model §3](../science/model-and-results.md#3-the-query-threshold); [interpretation §5](../science/interpretation.md#5-consequence-and-remaining-questions); [verification: proof routes and limits](../verification/README.md#proof-routes-and-limits).
-
-[childs]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf
-[childs-1]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf#page=9
-[childs-reversible]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf#page=10
-[childs-2]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf#page=15
-[childs-walk]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf#page=83
-[childs-markov]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf#page=90
-[childs-21]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf#page=105
-[childs-queries]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf#page=106
-[childs-parity]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf#page=107
-[childs-27]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf#page=141
-[childs-noff]: https://www.cs.umd.edu/~amchilds/qa/qa.pdf#page=147
+**Source pointers:** Watrous §§2.2, 3.3; [model](../science/model-and-results.md); [field consequence](../science/field-output.md); [related work](../references/related-work.md).

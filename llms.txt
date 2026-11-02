@@ -9,13 +9,14 @@ Scientific question: determine how one, two and three supplied reflection dephas
 - Direct finite-bit sampling, explicit error budget and classical/quantum resources: science/sampling-and-resources.md
 - Qubit hybrid lower bound and three-reflection finite-tree parity reduction: science/lower-bounds.md
 - Line/tree mechanism, physical meaning and limits: science/interpretation.md
+- Specified coherent field contract, field-only threshold consequence, failed system-witness transfer and sister proof ownership: science/field-output.md
 - Connected reading order: science/README.md
 - Primary comparisons, inherited ingredients and version provenance: references/related-work.md and references/references.bib
 - Reproduction commands, tested domains and finite-check limits: verification/README.md
 - Certified sampling implementation: verification/pair_sampler.py
 - Numerical and combinatorial checks: verification/check_pair_sampler.py and verification/check_channels.py
 - Learning entrypoint and relation between the common map and proofs: learning/README.md
-- Single educational anchor, verified Childs section mapping, notation translation and missing project connections: learning/CHILDS_BRIDGE.md
+- Single common educational anchor, Watrous channel/dilation/discrimination mapping, translated conventions and project-specific missing steps: learning/WATROUS_BRIDGE.md
 - Exactly 30 project-defined understanding targets, two phases and earlier-milestone dependencies: learning/MILESTONES.md
 
 ## Preserve these distinctions
@@ -28,4 +29,12 @@ For a conceptual explanation, connect single-reflection parity, two-reflection d
 
 ## Study route
 
-Use Andrew M. Childs's Lecture Notes on Quantum Algorithms, author PDF dated 17 April 2025, as the single educational anchor: https://www.cs.umd.edu/~amchilds/qa/qa.pdf . The bridge gives targeted section references; the map organizes this project's scientific story. For a question about one milestone, follow its dependencies and source pointers, then consult the linked canonical science for exact assumptions and proofs. The bridge supplies the channel, semigroup, probability and oracle-reduction connections that the selected reading does not supply for this project. The common map records understanding targets, not a particular reader's progress.
+Use John Watrous, The Theory of Quantum Information (2018 author draft), as the single common educational anchor: https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf . The bridge maps its channel, Stinespring and distinguishability foundations to this project's probability, oracle and parity arguments. The 30-milestone map organizes the scientific story independently of any reader's progress. Childs and other primary sources remain research attribution, not additional educational anchors.
+
+## Sister relationship and output boundary
+
+Quantum Environment Fast Forwarding (https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding) owns the authoritative field-only reflection theorem and new pair/triple field proofs. This repository owns the reflection-word geometry and reduced-system theorem. science/field-output.md preserves the definitions, assumptions, error-convention translation, consequences and essential reasoning needed to understand the sister exchange independently.
+
+The field task fixes vacuum HP dilation, H=0, rates1/k, jump phases, phase-referenced controlled SELECT and an oracle-independent chronological-word embedding. It discards the final system while retaining the coherent field and untouched reference. The same time hierarchy holds at fixed half diamond .1, but the old identity-boundary root-input tree field is exactly bit-independent. Known leaf-Z loops give a modified triple with linear query hardness, exp(Theta(t)) dimension and a required phase reference; total-number dephasing erases that witness. The pair dark-port count witness survives total-number dephasing.
+
+Credit the coherent word-reduction upper lift as routine. A classical endpoint sample does not retain field coherence. Endpoint workspace must be uncomputed; encoding, output slots, known preparation and physical photon emission remain separately charged. No fixed-dimension triple lower bound, phase-insensitive triple lower bound, cheap physical decoder or optimal joint precision law is asserted.
