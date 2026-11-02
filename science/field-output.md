@@ -2,7 +2,7 @@
 
 The sister project [Quantum Environment Fast Forwarding](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding) studies the field emitted by a specified vacuum dilation. Combining its output contract with the reflection-word geometry here gives the same worst-case constant/square-root/linear hierarchy. The lower bounds need field measurements: a measurement on the final system cannot establish hardness after that system has been discarded.
 
-This page states the complete receiving model, consequence and proof mechanisms. The sister repository owns the [authoritative field theorem](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/7ccf8fb54418b90a1142499472af81540946609e/science/reflection_threshold.md), [pair witness](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/7ccf8fb54418b90a1142499472af81540946609e/science/reflection_pair.md) and [three-reflection proof](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/7ccf8fb54418b90a1142499472af81540946609e/science/reflection_tree.md). This repository owns the [reduced-word geometry](pair-simulation.md), [system theorem](model-and-results.md) and original [tree parity construction](lower-bounds.md).
+This page states the complete receiving model, consequence and proof mechanisms. The sister repository owns the [authoritative field theorem](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/56295fc4db2a35521792d43c62231bce756e538d/science/reflection_threshold.md), [pair witness](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/56295fc4db2a35521792d43c62231bce756e538d/science/reflection_pair.md) and [three-reflection proof](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/56295fc4db2a35521792d43c62231bce756e538d/science/reflection_tree.md). This repository owns the [reduced-word geometry](pair-simulation.md), [system theorem](model-and-results.md) and original [tree parity construction](lower-bounds.md).
 
 ## Fixed microscopic target
 
@@ -34,7 +34,7 @@ V_t|\psi\rangle
 &=\sum_{N=0}^{\infty}\sum_{w\in[k]^N}
 \sqrt{e^{-t}t^N/(N!k^N)}\,
 R_{j_N}\cdots R_{j_1}|\psi\rangle\otimes|N,w\rangle_{\mathcal F},\\
-\Gamma_t(\rho)&=\operatorname{Tr}_S[V_t\rho V_t^\dagger].
+\Gamma_t(\rho)&=\mathrm{Tr}_S[V_t\rho V_t^\dagger].
 \end{aligned}
 ```
 
@@ -70,7 +70,7 @@ R_\pm(\theta)=\cos\theta\,Z\pm\sin\theta\,X.
 
 A fixed 50:50 mixing of the two bath labels transforms their couplings into $`L_b=\cos\theta Z`$ and $`L_d=\sin\theta X`$. Since $`L_d^\dagger L_d=\sin^2\theta I`$, the dark-port count is exactly Poisson with mean $`t\sin^2\theta`$, independently of the input.
 
-At $`\theta=0`$ the dark port is vacuum. At $`\theta=t^{-1/2}`$ its nonvacuum probability is at least $`1-e^{-\sin^2 1}`$, while the controlled-SELECT distance is at most $`t^{-1/2}`$. The hybrid argument therefore forces $`\Omega(\sqrt t)`$ queries. This measurement keeps only the field and preserves total photon number. Its signal survives dephasing between different total-number sectors. The [full pair proof](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/7ccf8fb54418b90a1142499472af81540946609e/science/reflection_pair.md) supplies the exact count law and error constants.
+At $`\theta=0`$ the dark port is vacuum. At $`\theta=t^{-1/2}`$ its nonvacuum probability is at least $`1-e^{-\sin^2 1}`$, while the controlled-SELECT distance is at most $`t^{-1/2}`$. The hybrid argument therefore forces $`\Omega(\sqrt t)`$ queries. This measurement keeps only the field and preserves total photon number. Its signal survives dephasing between different total-number sectors. The [full pair proof](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/56295fc4db2a35521792d43c62231bce756e538d/science/reflection_pair.md) supplies the exact count law and error constants.
 
 ## Why the original system parity witness does not transfer
 
@@ -105,7 +105,7 @@ D(\rho_F^0,\rho_F^1)
 =0.5071203359\ldots.
 ```
 
-The last estimate combines a constant probability of hitting a leaf by $`t-1`$ with its first exponential dwell time. The original two-bit-query controlled-SELECT compiler still works; leaf $`Z`$ costs no input-bit queries. The standard parity lower bound then yields $`q\ge m/4\ge t/384`$. The [authoritative tree proof](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/7ccf8fb54418b90a1142499472af81540946609e/science/reflection_tree.md) gives the full finite-time estimate and an explicit early-count/late-coherence field measurement.
+The last estimate combines a constant probability of hitting a leaf by $`t-1`$ with its first exponential dwell time. The original two-bit-query controlled-SELECT compiler still works; leaf $`Z`$ costs no input-bit queries. The standard parity lower bound then yields $`q\ge m/4\ge t/384`$. The [authoritative tree proof](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/56295fc4db2a35521792d43c62231bce756e538d/science/reflection_tree.md) gives the full finite-time estimate and an explicit early-count/late-coherence field measurement.
 
 This triple witness needs the stipulated phase reference. Because $`K\equiv N-|v|\pmod2`$ within an endpoint block, its two parity outputs differ by the total-number phase $`e^{i\pi N_{\mathrm{tot}}}`$. Dephasing between total-photon-number sectors makes them identical. The construction proves no phase-insensitive linear field lower bound.
 

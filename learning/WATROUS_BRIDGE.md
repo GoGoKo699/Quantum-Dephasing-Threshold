@@ -25,7 +25,7 @@ The book supplies channel and distinguishability foundations. It does not contai
 | Stinespring isometry | The coherent trajectory expansion, with system and field as its two output factors. |
 | One marginal channel | The reduced-system semigroup $`\Phi_t`$. |
 | The other marginal for the specified dilation | The coherent field channel $`\Gamma_t`$. Its physical labels and phases must be fixed. |
-| Completely bounded trace norm | The diamond norm $`\|\cdot\|_\diamond`$ in the scientific pages. |
+| Completely bounded trace norm | The diamond norm $`\lVert\cdot\rVert_\diamond`$ in the scientific pages. |
 | Event-probability error | At most $`\epsilon/2`$ for the system's unhalved error $`\epsilon`$; at most $`\epsilon`$ for a field half-diamond error $`\epsilon`$. |
 
 A reflection obeys $`R=R^\dagger`$ and $`R^2=I`$. The simulator receives no matrix entries. Its supplied oracle is
@@ -80,7 +80,7 @@ For two reflections, cancelling adjacent equal letters leaves an alternating wor
 
 ```math
 p_s(t)=e^{-t}I_{|s|}(t),\qquad\mathbb E S_t=0,\qquad
-\operatorname{Var}S_t=t.
+\mathrm{Var}S_t=t.
 ```
 
 Concentration makes $`|S_t|=O(\sqrt t)`$ at fixed tail probability. For the system, sample that endpoint directly and apply its word. The finite cyclic FFT sampler avoids generating the order-$`t`$ history; its probabilities are compiled into an explicitly stored classical dyadic table, without coherent memory access.

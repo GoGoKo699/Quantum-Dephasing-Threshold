@@ -361,7 +361,7 @@ The reduced-system theorem uses unhalved diamond error 0.01; the specified field
 
 **Conceptual connection:** A coordinate change now leaves a field-observable loop phase; the output’s photon-number coherence is load-bearing.
 
-**Source pointers:** Watrous §§2.2, 3.1–3.2; [field triple](../science/field-output.md#three-reflections-can-write-parity-into-the-field); [sister proof](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/7ccf8fb54418b90a1142499472af81540946609e/science/reflection_tree.md).
+**Source pointers:** Watrous §§2.2, 3.1–3.2; [field triple](../science/field-output.md#three-reflections-can-write-parity-into-the-field); [sister proof](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/56295fc4db2a35521792d43c62231bce756e538d/science/reflection_tree.md).
 
 ### M30 — Global synthesis: geometry, retained information and resources
 
