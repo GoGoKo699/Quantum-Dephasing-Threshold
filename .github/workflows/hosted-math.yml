@@ -1,0 +1,58 @@
+name: Hosted mathematics
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hosted-math-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inspect-github:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      HOSTED_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - name: Check out the exact source revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.HOSTED_REVISION }}
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the pinned read-only browser dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/hosted-math-deps" playwright@1.56.1 mathjax-full@3.2.1
+          "$RUNNER_TEMP/hosted-math-deps/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Inspect all tracked Markdown on the pinned GitHub host
+        env:
+          NODE_PATH: ${{ runner.temp }}/hosted-math-deps/node_modules
+        run: |
+          node verification/hosted/capture_hosted_math.cjs \
+            --root "$GITHUB_WORKSPACE" \
+            --repository "$GITHUB_REPOSITORY" \
+            --revision "$HOSTED_REVISION" \
+            --output "$RUNNER_TEMP/hosted-math-evidence"
+      - name: Upload the report, captures and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hosted-math-${{ env.HOSTED_REVISION }}
+          path: ${{ runner.temp }}/hosted-math-evidence/
+          if-no-files-found: warn
+          retention-days: 14

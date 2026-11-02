@@ -52,3 +52,7 @@ The certificate depends on the analytical correctness of those bounds and their 
 - [Lower bounds](../science/lower-bounds.md) proves the qubit hybrid argument, the controlled SELECT compiler and the parity reduction.
 
 The suite does not test every quantum input, prove a query lower bound numerically, certify experimental noise, or establish optimal joint precision dependence. It also does not claim that the exponentially large hard tree is explicitly stored or simulated at its full Hilbert-space size: the radial check uses the exact reduced birth–death chain, while structural checks use a small finite tree. The analytical construction supplies the arbitrary-size result.
+
+## Sister field diagnostics
+
+This suite validates the reduced-system theorem and its sampler. The [coherent-field consequence](../science/field-output.md) has different retained observables; its new pair/tree diagnostics are maintained with the [authoritative field proof](https://github.com/GoGoKo699/Quantum-Environment-Fast-Forwarding/blob/main/verification/README.md). Those checks include the old root-witness field blindness and the modified triple’s total-number-dephasing negative control. Passing the present system suite alone does not verify those field statements.

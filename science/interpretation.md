@@ -49,3 +49,9 @@ Likewise, a classical Markov-chain amplitude state is a different output object.
 An arbitrary pair of binary dephasing primitives admits universal sublinear query growth, even when the reflections do not commute. A triple need not. The sharp distinction is therefore a property of combining supplied noise primitives, with their total rate fixed.
 
 The present theorem leaves several natural parameters open: a dimension-dependent sharp law for triples, additional spatial-locality restrictions, and optimal joint dependence on time and very small error. The proofs settle the stated fixed-error, dimension-uniform classification without assuming answers to those extensions.
+
+## 6. System and field retain different information
+
+The sister [coherent-field consequence](field-output.md) shows why the output choice is part of the scientific task. On the original tree root input, each terminal vertex carries one definite prefix parity. Tracing the final system removes that parity from every surviving trajectory overlap, so the emitted field is exactly independent of the hidden bits. The system lower bound remains valid. Replacing missing leaf transitions by known $`Z`$ creates a different legal reflection family whose field coherences retain full parity. The new field lower bound uses a growing target and a phase reference; total-number dephasing destroys that triple witness.
+
+The common word geometry supplies routine coherent upper bounds for the field. It does not turn the system's classical endpoint sampler into a field simulator: the requested field retains trajectory coherence, and the reduction workspace must be uncomputed. Explicit field output, physical emission and encoding conversion have their own costs.

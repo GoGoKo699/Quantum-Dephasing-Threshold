@@ -9,7 +9,10 @@ The question is how the number of supplied binary dephasing primitives changes t
 | How is the endpoint sampled without generating a linear-length trajectory? | [Sampling and resources](sampling-and-resources.md) |
 | Why can arbitrary coherent algorithms do no better in the worst case? | [Lower bounds](lower-bounds.md) |
 | What causes the threshold, and what are its physical limits? | [Interpretation](interpretation.md) |
+| Does the hierarchy persist for the emitted field after tracing the system? | [Coherent field consequence and sister proof route](field-output.md) |
 | Which ingredients and comparison results are prior work? | [Related work](../references/related-work.md) |
 | Which finite calculations can be reproduced? | [Verification](../verification/README.md) |
 
 Read the model before the proofs: the count is the number of supplied reflection oracles, the simulation target is a full trace-preserving channel, and the three-reflection hard family has dimension exponential in time. The lower bounds permit coherent selection, ancillas, randomness and adaptive control. The implementation pages separately account for classical preprocessing, randomness, oracle precision and workspace.
+
+The [field comparison](field-output.md) changes the output contract explicitly. Its upper bound is the routine coherent lift of the cancellation identity. Its lower bounds require different retained observables; the original system parity measurement cannot be transferred through the final-system trace.
