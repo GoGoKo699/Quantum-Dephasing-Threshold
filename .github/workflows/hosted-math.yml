@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   inspect-github:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     env:
       HOSTED_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
